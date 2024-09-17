@@ -23,24 +23,22 @@
 % https://www.overleaf.com/latex/templates/modern-cv-slash-resume-template/vjrqdkpjckwj
 %
 
-% TODO merge CSI years and licence years
-
 \RequirePackage{etex}
 \documentclass[oneside]{article}
 
 \usepackage{wallpaper}
 \usepackage{geometry}
 \usepackage[
-    unicode=true,
-    bookmarks=true,
-    bookmarksnumbered=false,
-    bookmarksopen=true,
-    bookmarksopenlevel=1,
-    breaklinks=false,
-    pdfborder={0 0 0},
-    backref=false,
-    colorlinks=false
-    ]{hyperref}
+  unicode=true,
+  bookmarks=true,
+  bookmarksnumbered=false,
+  bookmarksopen=true,
+  bookmarksopenlevel=1,
+  breaklinks=false,
+  pdfborder={0 0 0},
+  backref=false,
+  colorlinks=false
+  ]{hyperref}
 \usepackage{lastpage}
 \usepackage{hyphenat}
 \usepackage{hyphsubst}
@@ -95,19 +93,19 @@
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
 
 \hypersetup{
-    pdftitle={CV-Paul-Chauveau},
-    pdfauthor={Paul Chauveau},
-    pdfsubject={Curriculum vitae}
+  pdftitle={CV-Paul-Chauveau},
+  pdfauthor={Paul Chauveau},
+  pdfsubject={Curriculum vitae}
 }
 
 \geometry{
-    a4paper,
-    left=0pt,
-    right=0pt,
-    top=0pt,
-    bottom=0pt,
-    nohead,
-    nomarginpar
+  a4paper,
+  left=0pt,
+  right=0pt,
+  top=0pt,
+  bottom=0pt,
+  nohead,
+  nomarginpar
 } % includefoot
 
 % Background Color of the Sidebar Column
@@ -124,214 +122,208 @@
 
 \begin{document}
 \setlength{\topskip}{0pt}\setlength{\footskip}{0pt}
-\fcolorbox{red}{sidebg}{%
-    \begin{minipage}[t][\textheight-2\fboxsep-2\fboxrule][t]{\dimexpr0.40\textwidth-2\fboxrule-2\fboxsep\relax}
-        \color{sidetext}
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % YOUR NAME, PRONOUNS, OCCUPATION(s)
-        {\bfseries\scshape\HUGE Paul} \\
-        {\bfseries\scshape\Huge Chauveau} % \qquad {il/iel}
-        \vspace{.3cm} \\
-        Candidat à un stage de master 2 \\
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % PICTURE
-        %\begin{center}
-        %    \begin{tikzpicture}
-        %    \clip (0,0) circle (2.5cm) node[anchor=center] {\includegraphics[width=5cm]{galaxy_frog.png}}; 
-        %    \end{tikzpicture}
-        %\end{center}
-        %\vspace{.3cm}
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        \vspace{10pt}
-        \rule{\linewidth}{0.4pt}
-        \phantomsection{}
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % PERSONAL INFORMATION
-        \addcontentsline{toc}{section}{Informations personnelles}
-        \section*{\large Informations personnelles}
-        \begin{tabularx}{\textwidth}{cY}
-           \faHome{}  & 29, Rue Bontemps, 33400 Talence \\
-           \faEnvelope{}   & \href{mailto:chauveaupaul17@gmail.com}{chauveaupaul17@gmail.com} \\
-           \faPhone{}      & +33 6 78 88 99 17 \\
-           \faBirthdayCake{} & 10/01/2001 - 17000 La Rochelle
-        \end{tabularx}
-        \vspace{.3cm} \\
-        \rule{\linewidth}{0.4pt} \\
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % YOUR LINKS, YOU MAY ALSO ADD A PERSONAL WEBSITE OR PORTFOLIO
-        \phantomsection{}
-        \addcontentsline{toc}{section}{Links}
-        \section*{\large Liens}
-        \begin{tabular}{cl}
-            \faGithub{}   & \href{https://github.com/PaulChauveau17}{PaulChauveau17} \\
-            \faLinkedin{} & \href{https://www.linkedin.com/in/paulchauveau118218/}{paulchauveau118218} \\
-        \end{tabular}
-        \vspace{10pt} \\
-        \rule{\linewidth}{0.4pt} \\
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % YOUR SKILLS
-        % Add/Remove as seen fit, Icons: https://packages.oth-regensburg.de/ctan/fonts/fontawesome5/doc/fontawesome5.pdf
-        \phantomsection{}
-        \addcontentsline{toc}{section}{Compétences techniques}
-        \section*{\large Compétences techniques}
-        \begin{tabularx}{\textwidth}{cY}
-            \faSearch{}     &  Google advanced search, Tor, Wayback Machine, Forums \\
-            \faCode{}        & C++, C, Python, Bash, Java, ASMx86 \\% Docker, PHP
-            \faPen{}        & \LaTeX, Markdown, HTML \\% LibreOffice
-            \faLaptop{}        & GNU/Linux (Debian), M. Windows\\
-            \faCodeBranch{}  & Git, VS code, JetBrains suite
-        \end{tabularx}
-        \vspace{1pt} \\
-        \rule{\linewidth}{0.4pt}
-        
-        \phantomsection{}
-        \addcontentsline{toc}{section}{Compétences transversales}
-        \section*{\large Compétences transversales}
-        \begin{tabularx}{\textwidth}{cY}
-            \faHandHoldingHeart{}        & Coopération, travail en groupe \\
-            \faLightbulb{}        & Curiosité, esprit d'initiative\\
-            \faFolder{}        & Organisation\\
-        \end{tabularx}
-        \vspace{1pt} \\
-        \rule{\linewidth}{0.4pt}
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % LANGUAGES
-        \phantomsection
-        \addcontentsline{toc}{section}{Langues}
-        \section*{\large Langues}
-        \begin{tabular}{cl cl}
-            \worldflag[width=0.28cm]{FR} & Français : langue maternelle \\
-            \worldflag[width=0.21cm]{GB} & Anglais : C1, mobilités au R-U \\
-            \worldflag[width=0.252cm]{DE} & Allemand : A2, voyage à Berlin \\
-        \end{tabular}
-        \vspace{.3cm}
-        \rule{\linewidth}{0.4pt}
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % HOBBIES
-        % https://www.ipgp.fr/~moguilny/LaTeX/fontawesome5Icons.pdf
-        \phantomsection
-        \addcontentsline{toc}{section}{Hobbies}
-        \section*{\large Centres d'intérêt}
-        \begin{tabularx}{\textwidth}{cY}
-            \faBicycle{} & Vélo \\
-            \faBookOpen{} & Littérature \\
-            \faFilm{} & Cinéma \\
-            \faAnchor{} & Voile \\
-        \end{tabularx}
-        \vspace{.3cm} \\
-        \rule{\linewidth}{0.4pt}
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % GRADESCALE (if nesseary, e.g. if you apply abroad, where scales 
-        % are different. You should at least provide, what the best possible
-        % grade and what the worst possible grade is)
-        %\vfill
-        %{\tiny Grade scale: (1) very good $\approx$91\%-100\%, (2) good $%\approx$81\%-90\%, 
-        %(3) satisfactory $\approx$66\%-80\%, (4) sufficient $\approx$50\%-65\%, (5) failed $\approx$0\%-49\%}
+\fcolorbox{red}{sidebg}{
+  \begin{minipage}[t][\textheight-2\fboxsep-2\fboxrule][t]{\dimexpr0.40\textwidth-2\fboxrule-2\fboxsep\relax}
+    \color{sidetext}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % YOUR NAME, PRONOUNS, OCCUPATION(s)
+    {\bfseries\scshape\HUGE Paul} \\
+    {\bfseries\scshape\Huge Chauveau}% \qquad {il/iel}
+    \vspace{.3cm} \\
+    {\large Candidat à un stage de master 2} \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % PICTURE
+    % \begin{center}
+    %   \begin{tikzpicture}
+    %   \clip (0,0) circle (2.5cm) node[anchor=center] {\includegraphics[width=5cm]{galaxy_frog.png}}; 
+    %   \end{tikzpicture}
+    % \end{center}
+    %\vspace{.3cm}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \vspace{.3cm}
+    \rule{\linewidth}{0.4pt}
+    % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % PERSONAL INFORMATION
+    % \phantomsection{}
+    \addcontentsline{toc}{section}{Informations personnelles}
+    \section*{\large Informations personnelles}
+    \begin{tabularx}{\textwidth}{cY}
+      \faBirthdayCake{} & Né le 10/01/2001 à La Rochelle, 17000 \\
+      \faFlag{}         & Nationalité Française \\
+      \faHome{}         & 29, Rue Bontemps, Talence, 33400 \\
+      \faPhone{}        & +33 6 78 88 99 17 \\
+      \faEnvelope{}     & \href{mailto:chauveaupaul17@gmail.com}{chauveaupaul17@gmail.com} \\
+      \faLink{}         & \href{https://linktr.ee/paul_chauveau_33}{linktr.ee/paul\_chauveau\_33} \\
+    \end{tabularx}
+    \vspace{1pt} \\
+    \rule{\linewidth}{0.4pt}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % YOUR LINKS, YOU MAY ALSO ADD A PERSONAL WEBSITE OR PORTFOLIO
+    % \phantomsection{}
+    % \addcontentsline{toc}{section}{Links}
+    % \section*{\large Liens}
+    % \begin{tabular}{cl}
+    %   \faLink   & \href{https://linktr.ee/paul_chauveau_33}{PaulChauveau17} \\
+    % \end{tabular}
+    % \vspace{10pt} \\
+    % \rule{\linewidth}{0.4pt}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % YOUR SKILLS
+    % \phantomsection{}
+    \addcontentsline{toc}{section}{Compétences techniques}
+    \section*{\large Compétences techniques}
+    \begin{tabularx}{\textwidth}{cY}
+      \faSearch{}     &  Google advanced search, Tor, Wayback Machine \\
+      \faCode{}       & C++, C, Python, Bash, Java, ASMx86 \\% Docker, PHP
+      \faPen{}        & \LaTeX, Markdown, HTML \\% LibreOffice
+      \faLaptop{}     & GNU/Linux (Debian), M. Windows \\% Virtualisation
+      \faCodeBranch{} & Git, VS code, JetBrains suite \\
+    \end{tabularx}
+    \vspace{1pt} \\
+    \rule{\linewidth}{0.4pt}
     
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % CREDITS - CREATIVE COMMONS
-        \vfill
-        {\tiny \faCreativeCommons{} CC0, Public-Domain - Clean CV/Resume Template, by Bennet B <dev@bennet.cc>}
-    \end{minipage}
+    % \phantomsection{}
+    \addcontentsline{toc}{section}{Compétences transversales}
+    \section*{\large Compétences transversales}
+    \begin{tabularx}{\textwidth}{cY}
+      \faHandHoldingHeart{} & Coopération, travail en groupe \\
+      \faLightbulb{}        & Curiosité, esprit d'initiative \\
+      \faFolder{}           & Organisation \\
+    \end{tabularx}
+    \vspace{1pt} \\
+    \rule{\linewidth}{0.4pt}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % LANGUAGES
+    % \phantomsection
+    \addcontentsline{toc}{section}{Langues}
+    \section*{\large Langues}
+    \begin{tabular}{cl cl}
+      \worldflag[width=0.28cm]{FR}  & Français : langue maternelle \\
+      \worldflag[width=0.21cm]{GB}  & Anglais : C1, mobilités au R-U \\
+      \worldflag[width=0.252cm]{DE} & Allemand : A2, voyage à Berlin \\
+    \end{tabular}
+    \vspace{.3cm} \\
+    \rule{\linewidth}{0.4pt}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % HOBBIES
+    % https://www.ipgp.fr/~moguilny/LaTeX/fontawesome5Icons.pdf
+    % \phantomsection
+    \addcontentsline{toc}{section}{Hobbies}
+    \section*{\large Centres d'intérêt}
+    \begin{tabularx}{\textwidth}{cY}
+      \faBicycle{}  & Vélo \\
+      \faBookOpen{} & Littérature \\
+      \faFilm{}     & Cinéma \\
+      \faAnchor{}   & Voile \\% codage
+    \end{tabularx}
+    \vspace{.3cm} \\
+    \rule{\linewidth}{0.4pt}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % GRADESCALE (if nesseary, e.g. if you apply abroad, where scales 
+    % are different. You should at least provide, what the best possible
+    % grade and what the worst possible grade is)
+    %\vfill
+    %{\tiny Grade scale: (1) very good $\approx$91\%-100\%, (2) good $%\approx$81\%-90\%, 
+    %(3) satisfactory $\approx$66\%-80\%, (4) sufficient $\approx$50\%-65\%, (5) failed $\approx$0\%-49\%}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % CREDITS - CREATIVE COMMONS
+    \vfill
+    {\tiny \faCreativeCommons{} CC0, Public-Domain - Clean CV/Resume Template, by Bennet B <dev@bennet.cc>}
+  \end{minipage}
 }
 \hfill
 \fcolorbox{red}{mainbg}{
-    \begin{minipage}[t][\dimexpr\textheight-2\fboxrule-2\fboxsep\relax][t]{\dimexpr0.6\textwidth-2\fboxrule-2\fboxsep\relax}
-        \color{maintext}
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % WORK EXPERIENCE
-        \phantomsection{}
-        \addcontentsline{toc}{section}{Expérience professionnelle}
-        \section*{\scshape\Large Expérience professionnelle \rule{\linewidth}{0.4pt}}
-%
-        {\large \textbf{Credit Agricole / Group Infrastructure Platform}} \\ 
-        {{\fontseries{medium}\selectfont journée d’immersion au Secure Operation Center (Niveau 3)}} \\
-        {\scshape\fontseries{light}\selectfont\footnotesize Novembre 2023} 
-        \begin{itemize}
-            \setlength{\itemsep}{-3pt}
-            \item découverte d'un SIEM, parsing d'IOCs
-            \item démonstartion de reverse enginering de malware
-        \end{itemize}
+  \begin{minipage}[t][\dimexpr\textheight-2\fboxrule-2\fboxsep\relax][t]{\dimexpr0.6\textwidth-2\fboxrule-2\fboxsep\relax}
+    \color{maintext}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % EDUCATION
+    \phantomsection{}
+    \addcontentsline{toc}{section}{Education}
+    \section*{\scshape\Large Formation \rule{\linewidth}{0.4pt}}
+    
+    {\large \textbf{Cryptologie et sécurité informatique}} \\
+    {\scshape\fontseries{light}\selectfont Université de Bordeaux \qquad septembre 2023 \textendash{} maintenant} \\[1ex]
+    {Master 2 de Mathématiques} \\[1ex]
+    {\footnotesize Sécurité des systèmes et des réseaux, cryptanalyse, post-quantique, cartes à puces} \\
+    {\footnotesize Projet en groupe et stage de 5 mois à venir} \\[2ex]
 
-        {\large \textbf{XLIM institut de recherche en mathématiques}} \\ 
-        {{\fontseries{medium}\selectfont Stage de Licence 3}} \\
-        {\scshape\fontseries{light}\selectfont\footnotesize Mai 2021 \textendash{} juin 2021} 
-        \begin{itemize}
-            
-            \setlength{\itemsep}{-3pt}
-            \item Création de matériel pédagogique pour l'informatique graphique
-            \item Proposition de travaux pratiques d'algèbre en C++ (niveau master 1)
-        \end{itemize}
-        
-        
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % PROJECTS
-        \phantomsection{}
-        \addcontentsline{toc}{section}{Projets}
-        \section*{\scshape\Large Projets \rule{\linewidth}{0.4pt}}
-        
-        {\large \textbf{Solving Compagny}} \\ 
-        {{\fontseries{medium}\selectfont projet d'entrepreneuriat}} \\
-        {\scshape\fontseries{light}\selectfont\footnotesize Mai 2024 \textendash{} maintenant}
-        \begin{itemize}
-            \setlength{\itemsep}{-3pt}
-            \item Application des directives de l'ANSSI pour la sécurisation des sites web
-            \item Conformité RGPD pour les traitements qui portent sur des données sensibles
-        \end{itemize}
-        
-        % {\large \textbf{LeekWars}} \\ 
-        % {{\fontseries{medium}\selectfont codage en pseudo Java}} \\
-        % {\scshape\fontseries{light}\selectfont\footnotesize Octobre 2023 \textendash{} maintenant}
-        % \begin{itemize}
-        %     \setlength{\itemsep}{-3pt}
-        %     \item Formulaires, bases de données
-        %     \item arbres de décision, optimisation
-        % \end{itemize}
+    {Master 1 de Mathématiques \textendash{} mention assez bien} \\[1ex]
+    {\footnotesize Sécurité logicielle, cryptologie, systèmes d'exploitation (UNIX)} \\
+    {\footnotesize Travail sur les empoissonement de cache DNS (\href{https://www.saddns.net/}{SAD DNS})} \\[2ex]
+    
+    {\large \textbf{Année de césure}} \\
+    {\scshape\fontseries{light}\selectfont Bordeaux et alentours \qquad février 2022 \textendash{} septembre 2023} \\
+    {\footnotesize Service civique dans une ressourcerie associative Etu'récup} \\
+    {\footnotesize Co-vice président de l'association Alt-} \\[2ex]
+    
+    {\large \textbf{Recherche opérationnelle et aide à la décision}} \\
+    {\scshape\fontseries{light}\selectfont Université de Bordeaux \qquad septembre 2021 \textendash{} janvier 2022} \\
+    {Semestre 1 du Master 1 de Mathématiques \textendash{} mention bien} \\[1ex]
+    {\footnotesize Algorithmique, programmation, statistique, graphes} \\[2ex]
+    
+    {\large \textbf{Parcours mathématiques et informatique}} \\
+    {\scshape\fontseries{light}\selectfont Université de Poitiers \qquad septembre 2020 \textendash{} mai 2021} \\
+    {Licence 3 \textendash{} mention bien} \\[1ex]
+    {\footnotesize Bases de données, programmation orientée objet, technologies du web} \\
+    {\footnotesize Projet en équipe de création de jeu-vidéo} \\[2ex]
+    
+    {\large \textbf{Parcours renforcé en mathématiques}} \\
+    {\scshape\fontseries{light}\selectfont Université de Poitiers \qquad septembre 2018 \textendash{} mai 2020} \\
+    {Licence 1 \& 2 \textendash{} mention bien} \\[1ex]
+    {\footnotesize Algèbre, électronique, algorithmique et programmation} \\
+    {\footnotesize Projets en binômes, présentations orales} \\[2ex]
 
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % EDUCATION
-        \phantomsection{}
-        \addcontentsline{toc}{section}{Education}
-        \section*{\scshape\Large Formation \rule{\linewidth}{0.4pt}}
-%
-        {\large \textbf{Cryptologie et sécurité informatique}} \\
-        {\scshape\fontseries{light}\selectfont Université de Bordeaux \qquad septembre 2024 \textendash{} maintenant} \\
-        {Master 2 de Mathématiques} \\[1ex]
-        {\footnotesize Sécurité des systèmes et des réseaux, cryptanalyse, post-quantique, cartes à puces} \\
-        {\footnotesize Projet en groupe et stage de 5 mois à venir} \\[2ex]
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % WORK EXPERIENCE
+    \phantomsection{}
+    \addcontentsline{toc}{section}{Expérience professionnelle}
+    \section*{\scshape\Large Expérience professionnelle \rule{\linewidth}{0.4pt}}
 
-        {\large \textbf{Cryptologie et sécurité informatique}} \\
-        {\scshape\fontseries{light}\selectfont Université de Bordeaux \qquad septembre 2023 \textendash{} mai 2024} \\
-        {Master 1 de Mathématiques \textendash{} mention assez bien} \\[1ex]
-        {\footnotesize Sécurité logicielle, cryptologie, systèmes d'exploitation (UNIX)} \\
-        {\footnotesize Projet de groupe sur les attaques sur le protocole DNS} \\[2ex]
+    {\large \textbf{Credit Agricole / Group Infrastructure Platform}} \\ 
+    {{\fontseries{medium}\selectfont journée d’immersion au Secure Operation Center (Niveau 3)}} \\
+    {\scshape\fontseries{light}\selectfont\footnotesize Novembre 2023} 
+    \begin{itemize}
+        \setlength{\itemsep}{-3pt}
+        \item découverte d'un SIEM, parsing d'IOCs
+        \item démonstartion de reverse enginering de malware
+    \end{itemize}
 
-        {\large \textbf{Année de césure}} \\
-        {\scshape\fontseries{light}\selectfont Bordeaux et alentours \qquad février 2022 \textendash{} septembre 2023} \\
-        {\footnotesize Service civique dans une ressourcerie associative Etu'récup} \\
-        {\footnotesize Co-vice président de l'association Alt-} \\[2ex]
+    {\large \textbf{XLIM institut de recherche en mathématiques}} \\ 
+    {{\fontseries{medium}\selectfont Stage de Licence 3}} \\
+    {\scshape\fontseries{light}\selectfont\footnotesize Mai 2021 \textendash{} juin 2021} 
+    \begin{itemize}
+        \setlength{\itemsep}{-3pt}
+        \item Création de matériel pédagogique pour l'informatique graphique
+        \item Proposition de travaux pratiques d'algèbre en C++ (niveau master 1)
+    \end{itemize}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % PROJECTS
+    \phantomsection{}
+    \addcontentsline{toc}{section}{Projets}
+    \section*{\scshape\Large Projets \rule{\linewidth}{0.4pt}}
+    
+    {\large \textbf{Solving Compagny}} \\ 
+    {{\fontseries{medium}\selectfont projet d'entrepreneuriat}} \\
+    {\scshape\fontseries{light}\selectfont\footnotesize Mai 2024 \textendash{} maintenant}
+    \begin{itemize}
+        \setlength{\itemsep}{-3pt}
+        \item Application des directives de l'ANSSI pour la sécurisation des sites web
+        \item Conformité RGPD pour les traitements qui portent sur des données sensibles
+    \end{itemize}
+    
+    % {\large \textbf{LeekWars}} \\ 
+    % {{\fontseries{medium}\selectfont codage en pseudo Java}} \\
+    % {\scshape\fontseries{light}\selectfont\footnotesize Octobre 2023 \textendash{} maintenant}
+    % \begin{itemize}
+    %     \setlength{\itemsep}{-3pt}
+    %     \item Formulaires, bases de données
+    %     \item arbres de décision, optimisation
+    % \end{itemize}
 
-        {\large \textbf{Recherche opérationnelle et aide à la décision}} \\
-        {\scshape\fontseries{light}\selectfont Université de Bordeaux \qquad septembre 2021 \textendash{} janvier 2022} \\
-        {Semestre 1 du Master 1 de Mathématiques \textendash{} mention bien} \\[1ex]
-        {\footnotesize Algorithmique, programmation, statistique, graphes} \\[2ex]
-
-        {\large \textbf{Parcours mathématiques et informatique}} \\
-        {\scshape\fontseries{light}\selectfont Université de Poitiers \qquad septembre 2020 \textendash{} mai 2021} \\
-        {Licence 3 \textendash{} mention bien} \\[1ex]
-        {\footnotesize Bases de données, programmation orientée objet, technologies du web} \\
-        {\footnotesize Projet en équipe de création de jeu-vidéo} \\[2ex]
-        
-        {\large \textbf{Parcours renforcé en mathématiques}} \\
-        {\scshape\fontseries{light}\selectfont Université de Poitiers \qquad septembre 2018 \textendash{} mai 2020} \\
-        {Licence 1 \& 2 \textendash{} mention bien} \\[1ex]
-        {\footnotesize Algèbre, électronique, algorithmique et programmation} \\
-        {\footnotesize Projets en binômes, présentations orales} \\[2ex]
-        
-        
-        \vfill
-        % {\hfill\small\fontseries{extralight}\selectfont Page \thepage of \pageref{LastPage}\hfill}
-
-    \end{minipage}
+    \vfill
+    % {\hfill\small\fontseries{extralight}\selectfont Page \thepage of \pageref{LastPage}\hfill}
+  \end{minipage}
 }
 \end{document}
