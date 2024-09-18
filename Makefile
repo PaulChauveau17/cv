@@ -7,7 +7,7 @@ resume:
 	@mv src/resume.pdf $(NAME)
 
 clean:
-	@cd src && rm -f *.aux *.out *.log 
+	@cd src && rm -f *.aux *.out *.log *.pdf
 	@rm -f $(NAME)
 
 help:
