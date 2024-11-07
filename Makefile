@@ -5,6 +5,7 @@ all: resume
 resume:
 	@cd src && pdflatex resume.tex
 	@mv src/resume.pdf $(NAME)
+	@code ./$(NAME)
 
 clean:
 	@cd src && rm -f *.aux *.out *.log *.pdf
