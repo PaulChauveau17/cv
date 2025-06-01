@@ -103,8 +103,7 @@
     {\bfseries\scshape\HUGE Paul} \\
     {\bfseries\scshape\HUGE Chauveau}
     \vspace{.3cm} \\
-    {\large Student in Computer Security
-            seeking Internship (4 to 6 months)} \\
+    {\large Job applicants in cybersecurity} \\
     \rule{\linewidth}{0.4pt}
     \addcontentsline{toc}{section}{Informations personnelles}
     \section*{\large Personal Information}
@@ -112,7 +111,7 @@
       \faBirthdayCake{} & 10/01/2001, 17000, La Rochelle \\
       \faFlag{}         & French Nationality \\
       \faHome{}         & 12, bd Monplaisir, 31400, Toulouse \\
-      \faPhone{}        & +33 6 78 88 99 17 \\
+      %\faPhone{}        & +33 6 78 88 99 17 \\
       \faEnvelope{}     & \href{mailto:chauveaupaul17@gmail.com}{chauveaupaul17@gmail.com} \\
       \faLink{}         & \href{https://linktr.ee/paul_chauveau_33}{linktr.ee/paul\_chauveau\_33} \\
     \end{tabularx}
@@ -121,11 +120,14 @@
   \addcontentsline{toc}{section}{Technical Skills}
   \section*{\large Technical Skills}
   \begin{tabularx}{\textwidth}{cY}    
-    % \faSearch{}     &  Google advanced search, Tor, Wayback Machine \\
-      \faCode{}       & C, C++, Python, Bash, Java, ASMx86, ASM-ARM \\ % PHP
-      \faPen{}        & \LaTeX, Markdown, HTML, LibreOffice \\
-      \faLaptop{}     & GNU/Linux (Debian), MS Windows, QEMU, VirtualBox \\
-      \faCodeBranch{} & Git, VS Code, JetBrains Suite \\
+    % \faSearch{}       & Google advanced search, Tor, Wayback Machine \\
+      \faGreaterThan{}  & Python, Bash, Powershell \\ % scripting
+      \faCode{}         & C, C++, Java, Assembly ARM/x86-64 \\ % lower level coding
+      \faLinux{}        & GNU/Linux (Debian based distros.) \\
+      \faWindows{}      & MS Windows, Microsoft 365 suite \\
+      \faBoxes{}        & QEMU, VirtualBox, Unicorn, Docker \\
+      \faCodeBranch{}   & Git, Visual Studio Code, SSH \\
+      \faPen{}          & \LaTeX, Markdown, HTML, Doxygen \\
     \end{tabularx}
     \vspace{.3cm} \\
     \rule{\linewidth}{0.4pt}
@@ -152,10 +154,11 @@
     \section*{\large Hobbies}
     \begin{tabularx}{\textwidth}{cY}
       \faBicycle{}    & Cycling \\
+      \faHiking{}     & Hiking \\
+      %\faAnchor{}    & Sailing \\
       \faLaptopCode{} & Programming \\
-      \faBookOpen{}   & Literature \\
       \faFilm{}       & Film \\
-      \faAnchor{}     & Sailing \\
+      \faBookOpen{}   & Literature \\
     \end{tabularx}
     \vspace{.3cm} \\
   \end{minipage}
@@ -174,18 +177,18 @@
     {\large \textbf{Cryptology and Computer Security}} \\
     {\scshape\fontseries{light}\selectfont University of Bordeaux \qquad September 2023 \textendash{} Present} \\
     {\textbf{Master's 2 in Mathematics and Computer Science}} \\[1ex]
-    {\footnotesize Smart Cards:
+    {\footnotesize System Security:
+    \begin{itemize}
+      \item Static reverse engineering with \textit{ghidra} and dynamic analysis with \textit{gdb}
+      \item Developping kernel modules for Linux kernel 4.18 
+      %\item Hooks via system calls
+    \end{itemize}
+    }
+    {\footnotesize Smart Cards and physical security:
       \begin{itemize}
         %\item Communication and description protocols: APDU/TPDU, ASN.1
-        \item First-order attacks and fault injection (focused on AES)
+        \item Side-channel attacks and fault injection (focused on AES)
         \item JavaCard security, poisoning JCAssembly
-      \end{itemize}
-    }
-    {\footnotesize System Security:
-      \begin{itemize}
-        \item Static reverse engineering with \textit{ghidra} and dynamic analysis with \textit{gdb}
-        \item Developping kernel modules for Linux kernel 4.18 
-        %\item Hooks via system call table or \textit{ftrace}
       \end{itemize}
     }
     {\footnotesize Network Security: IPSec, TLS, MiTM - ARP spoofing, Metasploit} \\[1ex]
@@ -226,8 +229,8 @@
     \begin{itemize}
       \setlength{\itemsep}{-3pt}
       \item Structure-aware fuzzing with AFL++ custom mutators
-      \item Exploiting 32-bits ARM embedded systems 
       \item Writting a grammar for bootloader (MCUBoot) inputs
+      \item Exploiting 32-bits ARM embedded systems 
     \end{itemize}
 
     {\large \textbf{Credit Agricole GIP}} \\ 
@@ -235,8 +238,7 @@
     {\scshape\fontseries{light}\selectfont Gradignan (Bordeaux) \qquad November 2023} \\
     \begin{itemize}
       \setlength{\itemsep}{-3pt}
-      \item Introduction to SIEM systems, IOC parsing
-      %\item Malware reverse engineering demonstration
+      \item SIEM systems, IOC parsing, malware reverse engineering
     \end{itemize}
 
     {\large \textbf{XLIM Laboratory, UMR CNRS 7252}} \\
