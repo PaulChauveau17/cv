@@ -1,4 +1,4 @@
-NAME = CV-Paul-Chauveau.pdf
+NAME = CV_FR_Paul_Chauveau.pdf
 
 all: resume
 
