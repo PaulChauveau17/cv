@@ -6,10 +6,9 @@
 \renewcommand*\familydefault{\sfdefault}
 \usepackage{moresize}
 \usepackage[a4paper,top=1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm]{geometry}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\setlength{\headheight}{-5pt}
+% Pas de fancyhdr (par demande)
 \setlength{\parindent}{0mm}
+
 \usepackage{multicol}
 \usepackage{array}
 \newcolumntype{x}[1]{>{\raggedleft\hspace{0pt}}p{#1}}
@@ -17,9 +16,7 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes, backgrounds,mindmap, trees}
 \usepackage{color}
-% \definecolor{sectcol}{RGB}{0,150,255}
-% \definecolor{bgcol}{RGB}{110,110,110}
-% \definecolor{softcol}{RGB}{225,225,225}
+\usepackage{everypage} % pour ajouter le logo sur chaque page via TikZ
 
 % ADN colors
 \definecolor{redADN}{RGB}{244,80,88} % official color palette
@@ -29,11 +26,21 @@
 \definecolor{bgcol}{RGB}{102,142,212}
 \definecolor{softcol}{RGB}{225,225,225}
 
-% small helper commands (adapted from template)
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\renewcommand{\thepage}{}
-\renewcommand{\thesection}{}
+% Score macro : \score{<n>} -> (n/5)
+\newcommand{\score}[1]{\,\textnormal{(#1/5)}}
+
+% Place logo top-right on every page (placeholder: logo.png)
+\AddEverypageHook{%
+  \begin{tikzpicture}[remember picture,overlay]
+    % adjust the raisebox value or width if needed
+    \node[anchor=north east] at (current page.north east) {\raisebox{-1cm}{\includegraphics[width=3.0cm]{logo_noir.png}}};
+  \end{tikzpicture}%
+}
+
+% small helper commands (adapted from template, kept minimal)
+\renewcommand{\thepage}{}	% no page number
+\renewcommand{\thesection}{}			
+
 \newcommand{\cvsection}[1]{\begin{center}\large\textcolor{sectcol}{\textbf{#1}}\end{center}}
 \newcommand{\cvevent}[5]{%
 \begin{tabular*}{1\textwidth}{p{13.6cm}  x{3.9cm}}
@@ -47,10 +54,10 @@
 }
 
 \begin{document}
-\vspace{-8pt}
+\vspace{-8pt} 
 \begin{center}
   \HUGE \textcolor{sectcol}{\rule[-1mm]{1mm}{0.9cm}} \textsc{Dossier de compétences}\\[2pt]
-  \small Spécialiste cybersécurité \& ingénierie DevSecOps
+  \large Spécialiste cybersécurité \& ingénierie DevSecOps
 \end{center}
 \vspace{6pt}
 
@@ -62,32 +69,34 @@ Ingénieur en cybersécurité (M2 Cryptologie et Sécurité Informatique) avec e
 \noindent\textbf{Contact} : Paul Chauveau — Toulouse / La Rochelle — chauveaupaul17@gmail.com — +33 6 78 88 99 17 \\
 \noindent\textbf{Langues} : Français (natif), Anglais B2/C1, Allemand A2
 
-\cvsection{Compétences techniques (catégorisées)}
+\cvsection{Compétences techniques}
+
 \begin{multicols}{2}
 \textbf{DevSecOps \& Automation}\\
-IaC : Terraform, Ansible (concepts, playbooks, roles), scripts d'automatisation (Bash, Python, PowerShell)\\
-CI/CD : Git, GitLab CI/CD, GitOps (ArgoCD / Flux concepts), Jenkins, pipelines automatisés, tests intégrés\\
-Containerisation \& Orchestration : Docker, images Dockerfile, Kubernetes (concepts, déploiement), Helm, Podman\\[6pt]
+IaC : Terraform \score{2}, Ansible (playbooks, roles) \score{3}, scripts (Bash \score{4}, Python \score{5}, PowerShell \score{2})\\
+CI/CD : Git \score{5}, GitLab CI/CD \score{4}, GitOps (ArgoCD / Flux concepts) \score{2}, Jenkins \score{3}\\
+Containerisation \& Orchestration : Docker \score{4}, images Dockerfile \score{4}, Kubernetes (concepts) \score{3}, Helm \score{2}, Podman \score{2}\\[6pt]
 
 \textbf{Cloud \& Virtualisation}\\
-Environnements : AWS / Azure (concepts), OpenStack / Proxmox (concepts)\\
-Virtualisation \& émulation : QEMU, VirtualBox, KVM, Unicorn Engine (émulation CPU pour fuzzing)\\[6pt]
+Environnements : AWS \score{2}, Azure \score{1}, OpenStack \score{2}, Proxmox \score{2}\\
+Virtualisation \& émulation : QEMU/KVM/VirtualBox \score{4}, Unicorn Engine (émulation pour fuzzing) \score{5}\\[6pt]
 
 \textbf{Systèmes \& Réseaux}\\
-GNU/Linux (Debian, Ubuntu, administration, kernel modules), systemd, SSH, Réseaux : VLAN, NAT, VPN, IPSec, routage, firewall (iptables/nftables)\\
-SIEM/monitoring : SIEM (découverte), ELK stack, Prometheus, Grafana, alerting\\[6pt]
+GNU/Linux (Debian/Ubuntu, admin, kernel modules) \score{5}, systemd \score{4}, SSH \score{4}\\
+Réseaux : VLAN \score{3}, NAT \score{3}, VPN \score{3}, IPSec \score{3}, routage \score{2}, firewall (iptables/nftables) \score{3}\\
+SIEM/monitoring : ELK \score{3}, Prometheus \score{3}, Grafana \score{3}\\[6pt]
 
 \textbf{Sécurité \& Cryptographie}\\
-Protocoles : TLS, Kerberos, IPSec, PKI concepts, gestion de clés (NIST SP 800-57 awareness)\\
-Cryptanalyses : DPA (side-channel), fault injection, attaques statistiques sur ECDSA, JavaCard security, cartes à puce\\
-Hardening, audits, pentest basics (Metasploit), reverse engineering (Ghidra, GDB)\\[6pt]
+Protocoles : TLS \score{3}, Kerberos \score{2}, PKI concepts \score{3}, gestion de clés (NIST SP 800-57 awareness) \score{3}\\
+Cryptanalyses : DPA (side-channel) \score{5}, fault injection \score{4}, attaques statistiques sur ECDSA \score{4}, JavaCard security \score{3}\\
+Hardening \score{4}, audits \score{3}, pentest basics (Metasploit) \score{2}, reverse engineering (Ghidra/GDB) \score{4}\\[6pt]
 
 \textbf{Testing \& Fuzzing}\\
-Fuzzing embarqué : MCUboot fuzzing, AFL++, Unicorn-AFL, grammaires, custom mutators, AFL custom hooks, coverage analysis, sanitizers (ASAN/UBSAN)\\
-Outils : afl, afl++ custom mutator, QEMU-based fuzzing, instrumentation, harness development\\[6pt]
+MCUboot fuzzing \score{5}, AFL++ \score{5}, Unicorn-AFL \score{4}, grammaires / custom mutators \score{5}, AFL custom hooks \score{4}, coverage analysis \score{4}, sanitizers (ASAN/UBSAN) \score{3}\\
+Outils : afl, afl++ custom mutator \score{4}, QEMU-based fuzzing \score{4}, instrumentation, harness development \score{5}\\[6pt]
 
 \textbf{Langages \& Outils}\\
-Python, Bash, PowerShell, C, C++, Java, Assembly (ARM / x86-64), Git, VSCode, Make/CMake, LaTeX, Markdown, Doxygen\\
+Python \score{5}, Bash \score{4}, PowerShell \score{2}, C \score{4}, C++ \score{3}, Java \score{2}, Assembly (ARM / x86-64) \score{4}, Git \score{5}, LaTeX \score{4}, Doxygen \score{2}
 \end{multicols}
 
 \vspace{6pt}
