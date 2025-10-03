@@ -1,420 +1,124 @@
-%-----------------------------------------------------------------------------------------------------------------------------------------------%
-%	The MIT License (MIT)
-%
-%	Copyright (c) 2015 Jan Küster
-%
-%	Permission is hereby granted, free of charge, to any person obtaining a copy
-%	of this software and associated documentation files (the "Software"), to deal
-%	in the Software without restriction, including without limitation the rights
-%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-%	copies of the Software, and to permit persons to whom the Software is
-%	furnished to do so, subject to the following conditions:
-%	
-%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-%	THE SOFTWARE.
-%	
-%
-%-----------------------------------------------------------------------------------------------------------------------------------------------%
-
-
-%============================================================================%
-%
-%	DOCUMENT DEFINITION
-%
-%============================================================================%
-
-%we use article class because we want to fully customize the page and dont use a cv template
-\documentclass[10pt,A4]{article}	
-
-
-%----------------------------------------------------------------------------------------
-%	ENCODING
-%----------------------------------------------------------------------------------------
-
-%we use utf8 since we want to build from any machine
-\usepackage[utf8]{inputenc}		
-
-%----------------------------------------------------------------------------------------
-%	LOGIC
-%----------------------------------------------------------------------------------------
-
-% provides \isempty test
-\usepackage{xifthen}
-
-%----------------------------------------------------------------------------------------
-%	FONT
-%----------------------------------------------------------------------------------------
-
-% some tex-live fonts - choose your own
-
-%\usepackage[defaultsans]{droidsans}
-%\usepackage[default]{comfortaa}
-%\usepackage{cmbright}
-\usepackage[default]{raleway}
-%\usepackage{fetamont}
-%\usepackage[default]{gillius}
-%\usepackage[light,math]{iwona}
-%\usepackage[thin]{roboto} 
-
-% set font default
-\renewcommand*\familydefault{\sfdefault} 	
+% Dossier de compétences -- version orientée DevSecOps/Automatisation/Réseaux
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
-% more font size definitions
-\usepackage{moresize}		
-
-
-%----------------------------------------------------------------------------------------
-%	PAGE LAYOUT  DEFINITIONS
-%----------------------------------------------------------------------------------------
-
-%debug page outer frames
-%\usepackage{showframe}			
-
-
-%define page styles using geometry
-\usepackage[a4paper]{geometry}		
-
-% for example, change the margins to 2 inches all round
-\geometry{top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm} 	
-
-%use customized header
-\usepackage{fancyhdr}				
+\usepackage[default]{raleway}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{moresize}
+\usepackage[a4paper,top=1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+\usepackage{fancyhdr}
 \pagestyle{fancy}
-
-%less space between header and content
-\setlength{\headheight}{-5pt}		
-
-
-%customize entries left, center and right
-%\lhead{}
-%\chead{}
-%\rhead{}
-
-
-%indentation is zero
+\setlength{\headheight}{-5pt}
 \setlength{\parindent}{0mm}
-
-%----------------------------------------------------------------------------------------
-%	TABLE /ARRAY DEFINITIONS
-%---------------------------------------------------------------------------------------- 
-
-%for layouting tables
-\usepackage{multicol}			
-\usepackage{multirow}
-
-%extended aligning of tabular cells
+\usepackage{multicol}
 \usepackage{array}
-
-\newcolumntype{x}[1]{%
->{\raggedleft\hspace{0pt}}p{#1}}%
-
-
-%----------------------------------------------------------------------------------------
-%	GRAPHICS DEFINITIONS
-%---------------------------------------------------------------------------------------- 
-
-%for header image
+\newcolumntype{x}[1]{>{\raggedleft\hspace{0pt}}p{#1}}
 \usepackage{graphicx}
-
-%for floating figures
-\usepackage{wrapfig}
-\usepackage{float}
-%\floatstyle{boxed} 
-%\restylefloat{figure}
-
-%for drawing graphics		
-\usepackage{tikz}				
+\usepackage{tikz}
 \usetikzlibrary{shapes, backgrounds,mindmap, trees}
-
-
-%----------------------------------------------------------------------------------------
-%	Color DEFINITIONS
-%---------------------------------------------------------------------------------------- 
-
 \usepackage{color}
+% \definecolor{sectcol}{RGB}{0,150,255}
+% \definecolor{bgcol}{RGB}{110,110,110}
+% \definecolor{softcol}{RGB}{225,225,225}
 
-%accent color
-\definecolor{sectcol}{RGB}{0,150,255}
+% ADN colors
+\definecolor{redADN}{RGB}{244,80,88} % official color palette
+\definecolor{blueADN}{RGB}{102,142,212} % official color palette
 
-%dark background color
-\definecolor{bgcol}{RGB}{110,110,110}
-
-%light background / accent color
+\definecolor{sectcol}{RGB}{244,80,88}
+\definecolor{bgcol}{RGB}{102,142,212}
 \definecolor{softcol}{RGB}{225,225,225}
 
-
-%============================================================================%
-%
-%
-%	DEFINITIONS
-%
-%
-%============================================================================%
-
-%----------------------------------------------------------------------------------------
-% 	HEADER
-%----------------------------------------------------------------------------------------
-
-% remove top header line
-\renewcommand{\headrulewidth}{0pt} 
-
-%remove botttom header line
-\renewcommand{\footrulewidth}{0pt}	  	
-
-%remove pagenum
-\renewcommand{\thepage}{}	
-
-%remove section num		
-\renewcommand{\thesection}{}			
-
-%----------------------------------------------------------------------------------------
-% 	ARROW GRAPHICS in Tikz
-%----------------------------------------------------------------------------------------
-
-% a six pointed arrow poiting to the left
-\newcommand{\tzlarrow}{(0,0) -- (0.2,0) -- (0.3,0.2) -- (0.2,0.4) -- (0,0.4) -- (0.1,0.2) -- cycle;}	
-
-% include the left arrow into a tikz picture
-% param1: fill color
-%
-\newcommand{\larrow}[1]
-{\begin{tikzpicture}[scale=0.58]
-	 \filldraw[fill=#1!100,draw=#1!100!black]  \tzlarrow
- \end{tikzpicture}
-}
-
-% a six pointed arrow poiting to the right
-\newcommand{\tzrarrow}{ (0,0.2) -- (0.1,0) -- (0.3,0) -- (0.2,0.2) -- (0.3,0.4) -- (0.1,0.4) -- cycle;}
-
-% include the right arrow into a tikz picture
-% param1: fill color
-%
-\newcommand{\rarrow}
-{\begin{tikzpicture}[scale=0.7]
-	\filldraw[fill=sectcol!100,draw=sectcol!100!black] \tzrarrow
- \end{tikzpicture}
-}
-
-
-
-%----------------------------------------------------------------------------------------
-%	custom sections
-%----------------------------------------------------------------------------------------
-
-% create a coloured box with arrow and title as cv section headline
-% param 1: section title
-%
-\newcommand{\cvsection}[1]
-{
-	\begin{center}
-		\large\textcolor{sectcol}{\textbf{#1}}
-	\end{center}
-}
-
-%create a coloured arrow with title as cv meta section section
-% param 1: meta section title
-%
-\newcommand{\metasection}[2]
-{
-%\begin{tabular*}{1\textwidth}{r r}
-\footnotesize{#2} \hspace*{\fill} \footnotesize{#1}\\[1pt]
-%\end{tabular*}
-}
-
-%----------------------------------------------------------------------------------------
-%	 CV EVENT
-%----------------------------------------------------------------------------------------
-
-% creates a stretched box as cv entry headline followed by two paragraphs about 
-% the work you did
-% param 1:	event time i.e. 2014 or 2011-2014 etc.
-% param 2:	event name (what did you do?)
-% param 3:	institution (where did you work / study)
-% param 4:	what was your position
-% param 5:	some words about your contributions
-%
-\newcommand{\cvevent}[5]
-{
-
+% small helper commands (adapted from template)
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\thepage}{}
+\renewcommand{\thesection}{}
+\newcommand{\cvsection}[1]{\begin{center}\large\textcolor{sectcol}{\textbf{#1}}\end{center}}
+\newcommand{\cvevent}[5]{%
 \begin{tabular*}{1\textwidth}{p{13.6cm}  x{3.9cm}}
 	\textbf{#2} - \textcolor{bgcol}{#3} &   \vspace{2.5pt}\textcolor{sectcol}{#1}
 \end{tabular*}
-
 \vspace{-8pt}
 \textcolor{softcol}{\hrule}
 \vspace{6pt}
-
   $\cdot$ #4\\[3pt]
   $\cdot$ #5\\[6pt]
-
 }
 
-% creates a stretched box as 
-\newcommand{\cveventmeta}[2]
-{
-	\mbox{\mystrut \hspace{87pt}\textit{#1}}\\
-	#2
-}
-
-%----------------------------------------------------------------------------------------
-% CUSTOM STRUT FOR EMPTY BOXES
-%----------------------------------------- -----------------------------------------------
-\newcommand{\mystrut}{\rule[-.3\baselineskip]{0pt}{\baselineskip}}
-
-%----------------------------------------------------------------------------------------
-% CUSTOM LOREM IPSUM
-%----------------------------------------------------------------------------------------
-\newcommand{\lorem}
-{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.}
-
-
-
-%============================================================================%
-%
-%
-%
-%	DOCUMENT CONTENT
-%
-%
-%
-%============================================================================%
 \begin{document}
-
-
-%use our custom fancy header definitions
-\pagestyle{fancy}	
-
-
-
-
-
-%----------------------------------------------------------------------------------------
-%	HEADER IMAGE
-%----------------------------------------------------------------------------------------
-
-%\begin{figure}[H]
-%\begin{flushright}
-%	\includegraphics[trim= 320 130 460 210,clip,width=0.2\linewidth]{myfoto.jpg}	%trimming relative to image size!
-%\end{flushright}
-%\end{figure}
-
-
-%---------------------------------------------------------------------------------------
-%	TITLE HEADLINE
-%----------------------------------------------------------------------------------------
 \vspace{-8pt}
 \begin{center}
-	% \HUGE \textsc{Paul Chauveau} 
   \HUGE \textcolor{sectcol}{\rule[-1mm]{1mm}{0.9cm}} \textsc{Dossier de compétences}\\[2pt]
-	\small Spécialiste cybersécurité et automatisation
+  \small Spécialiste cybersécurité \& ingénierie DevSecOps
 \end{center}
-
-
-
 \vspace{6pt}
 
+% META
+\cvsection{Résumé}
+Ingénieur en cybersécurité (M2 Cryptologie et Sécurité Informatique) avec expérience pratique en fuzzing embarqué, sécurité système embarqué, reverse engineering et automatisation. Orientation DevOps/DevSecOps : pipelines CI/CD, Infrastructure as Code, conteneurs et orchestration, automatisation des tests de sécurité, monitoring et conformité. Disponible immédiatement.
 
-%---------------------------------------------------------------------------------------
-%	META SECTION
-%----------------------------------------------------------------------------------------
-% \metasection{Bremen, Germany}{\textbf{Status:} M.Sc. Digital Media, Scientific Employee}
-% \metasection{www.jankuester.com}{\textbf{Fields:} Software Engineering, Consulting, Scrum, Usability} 
-% \metasection{info@jankuester.com}{\textbf{Techs:} Meteor, Javascript, Mongo,. Bootstrap, Bash, Git, Webstorm}
-% \metasection{+49 176 *** *** **}{\textbf{Activities:} Global Game Jam, Open Source, Fitness}
-% \vspace{-2pt}
-% \textcolor{softcol}{\hrule}
-% \vspace{6pt}
+\vspace{4pt}
+\noindent\textbf{Contact} : Paul Chauveau — Toulouse / La Rochelle — chauveaupaul17@gmail.com — +33 6 78 88 99 17 \\
+\noindent\textbf{Langues} : Français (natif), Anglais B2/C1, Allemand A2
 
-\normalsize
+\cvsection{Compétences techniques (catégorisées)}
+\begin{multicols}{2}
+\textbf{DevSecOps \& Automation}\\
+IaC : Terraform, Ansible (concepts, playbooks, roles), scripts d'automatisation (Bash, Python, PowerShell)\\
+CI/CD : Git, GitLab CI/CD, GitOps (ArgoCD / Flux concepts), Jenkins, pipelines automatisés, tests intégrés\\
+Containerisation \& Orchestration : Docker, images Dockerfile, Kubernetes (concepts, déploiement), Helm, Podman\\[6pt]
 
-%---------------------------------------------------------------------------------------
-%	SUMMARAY (optional)
-%----------------------------------------------------------------------------------------
-\vspace{-6pt}
-\cvsection{Summary}
-Récemment diplômé du Master 2 Cryptolgie et Sécurité informatique, je suis disponible immédiatement pour travailler avec vous sur vos projets.
+\textbf{Cloud \& Virtualisation}\\
+Environnements : AWS / Azure (concepts), OpenStack / Proxmox (concepts)\\
+Virtualisation \& émulation : QEMU, VirtualBox, KVM, Unicorn Engine (émulation CPU pour fuzzing)\\[6pt]
 
+\textbf{Systèmes \& Réseaux}\\
+GNU/Linux (Debian, Ubuntu, administration, kernel modules), systemd, SSH, Réseaux : VLAN, NAT, VPN, IPSec, routage, firewall (iptables/nftables)\\
+SIEM/monitoring : SIEM (découverte), ELK stack, Prometheus, Grafana, alerting\\[6pt]
 
-%============================================================================%
-%
-%	CV SECTIONS AND EVENTS (MAIN CONTENT)
-%
-%============================================================================%
+\textbf{Sécurité \& Cryptographie}\\
+Protocoles : TLS, Kerberos, IPSec, PKI concepts, gestion de clés (NIST SP 800-57 awareness)\\
+Cryptanalyses : DPA (side-channel), fault injection, attaques statistiques sur ECDSA, JavaCard security, cartes à puce\\
+Hardening, audits, pentest basics (Metasploit), reverse engineering (Ghidra, GDB)\\[6pt]
 
-%---------------------------------------------------------------------------------------
-%	EXPERIENCE
-%----------------------------------------------------------------------------------------
-\cvsection{Experience}
+\textbf{Testing \& Fuzzing}\\
+Fuzzing embarqué : MCUboot fuzzing, AFL++, Unicorn-AFL, grammaires, custom mutators, AFL custom hooks, coverage analysis, sanitizers (ASAN/UBSAN)\\
+Outils : afl, afl++ custom mutator, QEMU-based fuzzing, instrumentation, harness development\\[6pt]
 
-\cvevent{2016 - present}{Scientific Employee / PhD Student}{University of Bremen}{Develop and evaluate the next generation learning management system with Meteor}{Define a new level of software for classroom management based on an extensive nursing curriculum.}
+\textbf{Langages \& Outils}\\
+Python, Bash, PowerShell, C, C++, Java, Assembly (ARM / x86-64), Git, VSCode, Make/CMake, LaTeX, Markdown, Doxygen\\
+\end{multicols}
 
-%
-\cvevent{2014 - 2016}{IT Consultant for IBM XPages and Notes Domino}{We4IT GmbH Bremen}{Realize projects in XPages and We4IT Aveedo, monitor project status, conduct reports}{Implement the frontend for a BPMN compatible engine within We4IT Aveedo}
+\vspace{6pt}
+\cvsection{Expériences sélectionnées orientées DevOps / DevSecOps}
 
-%\textcolor{softcol}{\hrule}
+\cvevent{Mars 2025 -- Août 2025}{STMicroelectronics — Stage de fin d'études}{Labège (Toulouse)}{Fuzzing du bootloader MCUboot et développement de grammars pour tests automatisés}{Sécurité système et logicielle des systèmes embarqués ARM. Mise en place de harness d'émulation (QEMU / Unicorn), intégration de campagnes de fuzzing automatisées; instrumentation pour coverage et rapports.}
 
-%
-\cvevent{2012 - 2014}{Scientific Employee / Software Development}{University of Bremen}{Invented a flexible assessment framework, targeting industrial trainees}{Supervised software development lifecycle, Recruited team members}
+\cvevent{Mai 2024 -- maintenant}{Solving Company — Mission / Consultant}{Bordeaux (freelance)}{Conformité ANSSI et RGPD pour traitements de données de santé; recommandations techniques}{Mise en place de bonnes pratiques DevSecOps, pipelines CI, automatisation des déploiements, gestion de secrets et conformité.}
 
-%\textcolor{softcol}{\hrule}
+\cvevent{Novembre 2023}{Crédit Agricole GIP — Immersion SOC (N3)}{Gradignan}{Parsing d'IOCs, analyse du SIEM Splunk}{Approche opérationnelle SOC, triage d'incidents, supervision.}
 
-%
-\cvevent{2011 / 11}{Project Management Simulation Training}{Getoq Consulting}{Performed a two-day project simulation from management perspective}{Topics included customer contracts, change management, controlling, operational tasks}
+\cvevent{Mai 2021 -- Juil 2021}{Laboratoire XLIM UMR CNRS 7252 — Stage}{Poitiers}{Conception de travaux pratiques (C++)}{Développement d'exercices avancés, tests automatisés, packaging et documentation.}
 
-%\textcolor{softcol}{\hrule}
+\vspace{6pt}
+\cvsection{Projets et réalisations (extraits)}
+\begin{itemize}
+  \item \textbf{MCUboot fuzzing (STMicro)} : création de grammars, harness d'émulation, campagnes fuzz automatisées, analyse de coverage et des plantages.
+  \item \textbf{Custom mutator / AFL++ (travail universitaire / perso)} : définition de mutateurs structurés pour formats binaires, optimisation des queues, synchronisation multi-processus.
+  \item \textbf{Hardening et conformité} : application des directives techniques ANSSI, audits RGPD pour données sensibles.
+  \item \textbf{Reverse engineering} : usage de Ghidra et GDB pour l'analyse binaire, débogage et patching expérimental.
+  \item \textbf{Systèmes embarqués} : modules noyau Linux (expérimentaux), assemblage et tests sur cibles ARM, outils arm-none-eabi.
+\end{itemize}
 
+\vspace{6pt}
+\cvsection{Mots-clé (pour tri commercial / recherche de mission)}
+\noindent\small
+DevSecOps, CI/CD, GitLab CI, Jenkins, GitOps, Ansible, Terraform, IaC, Docker, Kubernetes, Helm, ArgoCD, Dockerfile, Prometheus, Grafana, ELK, SIEM, fuzzing, MCUboot, AFL++, Unicorn, Unicorn-AFL, QEMU, instrumentation, sanitizers, ASAN, UBSAN, coverage, custom mutator, embedded security, ARM, arm-none-eabi, kernel modules, Linux (Debian/Ubuntu), SSH, firewalls, VLAN, NAT, IPSec, TLS, Kerberos, PKI, JavaCard, DPA, fault injection, ECDSA, AES, reverse engineering, Ghidra, GDB, Python, Bash, C, C++, Assembly, LaTeX, Doxygen, RGPD, ANSSI, conformité.
 
-%
-\cvevent{2010 - 2011}{Student Assistant / Programmer}{otulea.uni-bremen.de}{Realized an online diagnosis platform for workforce literacy development (Flex)}{Modeled software design, implemented various prototypes, conducted usability tests}
-
-
-%---------------------------------------------------------------------------------------
-%	EDUCATION SECTION
-%--------------------------------------------------------------------------------------
-\cvsection{Education}
-
-\cvevent{2015 / 07}{Graduated as M.Sc. Digital Media}{University of Bremen}{Master Thesis: Semi Automated Scoring in Technology Based Assessment}{Developed and evaluated an algorithm for semi automated scoring of spreadsheet data}
-
-%\textcolor{softcol}{\hrule}
-
-%
-\cvevent{2012 - 2013}{Master Project - PrIMA}{University of Bremen}{Co-Invented a touch table application for medical support, co-developed software (Java) }{Formed a scrum team, mainted project dev server (Debian), surveyed target audience}
-
-%\textcolor{softcol}{\hrule}
-
-%
-\cvevent{2012 - 2015}{Master Studies Digital Media}{University of Bremen}{Inter-cultural classes in English, covering special topics in computer science and design}{Professionalized in research methods, software development and e-assessment}
-
-%\textcolor{softcol}{\hrule}
-
-%
-\cvevent{2009 - 2010}{Semester Abroad}{University of Melbourne}{Mastered six months of study and trans-cultural experience in Melbourne, Australia}{Finished machine programming, information visualization, professional essay writing}
-
-
-%--------------------------------------------------------------------------------------------------
-%	ARTIFICIAL FOOTER (fancy footer cannot exceed linewidth) 
-%--------------------------------------------------------------------------------------------------
+\vspace{8pt}
+\noindent\textbf{Disponibilité} : immédiate. \quad \textbf{Mobilité} : Bordeaux / Toulouse / France.
 
 \null
 \vspace*{\fill}
-\hspace{-0.25\linewidth}\colorbox{white}{\makebox[1.5\linewidth][c]{\mystrut  \textnormal{\textcolor{sectcol}{www.jankuester.com} $\cdot$ \textcolor{sectcol}{github.com/jankapunkt}}}}
-
-
-
-
-%============================================================================%
-%
-%
-%
-%	DOCUMENT END
-%
-%
-%
-%============================================================================%
 \end{document}
