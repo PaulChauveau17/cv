@@ -121,6 +121,68 @@ Python \score{5}, Bash \score{4}, PowerShell \score{2}, C \score{4}, C++ \score{
 \end{itemize}
 
 \vspace{6pt}
+
+% ---------- Sections additionnelles : parcours & projets ----------
+\cvsection{Projets académiques, associatifs et parcours}
+
+% Lycée
+\cvevent{Lycée}{Radio & couverture d'événements musicaux}{Lycée local}
+{Organisation et couverture technique d'événements musicaux, prise en charge de la captation audio et gestion du flux de diffusion.}
+{\textbf{Compétences associées :} Communication orale \score{3}, Gestion de flux/streaming basique \score{2}, Anglais technique (maths) \score{2} }
+
+% Parcours renforcé L1-L2
+\cvevent{Parcours renforcé (L1-L2)}{Travaux en binôme et présentations techniques}{Université}
+{Exposés oraux réguliers sur sujets techniques en français ; cours d'anglais d'ingénieur en anglais ; projets en binômes avec livrables partagés.}{Compétences : présentations techniques, documentation en anglais, collaboration en binôme, gestion de versions. \\ \textbf{Compétences associées :} Présentation technique \score{4}, Anglais technique \score{3}, Travail en binôme / Git \score{3}.}
+
+% Licence 3
+\cvevent{Licence 3}{Développement d'un jeu vidéo en équipe (C++)}{Université / Godot}
+{Développement d'un jeu en C++ avec moteur Godot ; coordination avec lead dev et équipes artistiques pour intégrer sons et visuels ; conception de bases de données relationnelles ; utilisation d'un ORM pour un projet de plateforme en ligne (backend Symfony) ; étude d'injection SQL sur les requêtes. Travail sur Scilab pour algorithmes d'analyse mathématique.}{
+\textbf{Compétences associées :} C++ \score{3}, Godot / intégration multimédia \score{2}, Conception BD relationnelle \score{3}, ORM / Symfony (backend) \score{2}, Sécurité appliquée aux requêtes (injection SQL) \score{3}, Scilab / algorithmique \score{3}.
+}
+
+% Master 1 ROAD (semestre 1)
+\cvevent{M1 ROAD (S1)}{Algorithmes gloutons \& projet Flop!Edt}{Université}
+{Étude d'algorithmes gloutons et problèmes d'optimisation (tournées, graphe, flots). Projet professionnalisant : Flop!Edt (C++) — création d'un outil de génération d'emplois du temps comme problème de maximisation avec relaxation lagrangienne.}{
+\textbf{Compétences associées :} Algorithmique (gloutons, graphes) \score{4}, C++ projet pro \score{3}, Recherche opérationnelle \score{3}, Modélisation de contraintes \score{3}.
+}
+
+% Année de césure
+\cvevent{Année de césure}{Support associatif et déploiement d'outils}{Alt- (association)}
+{Administration d'identifiants et mise en place de partage de documents sécurisé (éviter Google Drive) : déploiement et formation à BitWarden, sélection d'outils libres et bonnes pratiques. Développement d'un service de conseil cyber pour TPE/PME (cadre NIS) ; formation via SecNumAcadémie de l'ANSSI.}{
+\textbf{Compétences associées :} Gouvernance & bonnes pratiques (NIS) \score{3}, Gestion de secrets (BitWarden) \score{4}, Formation / sensibilisation \score{4}, Conseil TPE/PME \score{3}.
+}
+
+% Etu'Récup
+\cvevent{Etu'Récup}{Ateliers collaboratifs \& réparation électronique}{Collectif local}
+{Ateliers de réparation électronique et informatique ; diagnostics, remplacement de composants, remise en service, documentation des procédures ; travail entreprenarial autonome sur une offre de consulting cyber pour petites structures.}{
+\textbf{Compétences associées :} Réparation hardware \score{3}, Diagnostic système \score{3}, Autonomie projet / consulting \score{3}.
+}
+
+% Solving Company
+\cvevent{Solving Company}{Conformité RGPD \& revue système}{Solving Company (mission)}
+{Revue système et réseaux pour conformité RGPD ; formation des collaborateurs sur réflexes cybersécurité basés sur fiches synthèses ANSSI ; hébergement des données en Europe et stratégies de sauvegarde locales/distantes.}{
+\textbf{Compétences associées :} RGPD \score{4}, Revue sécurité système & réseaux \score{4}, Politique de sauvegarde / hébergement EU \score{3}, Sensibilisation collaborateurs \score{4}.
+}
+
+% M1 CSI : SAD DNS synthèse (voir notes externes)
+\cvsection{M1 CSI — SAD DNS (points essentiels)}
+\noindent Lors du M1 CSI tu as travaillé sur l'étude SAD DNS (Side-channel AttackeD DNS). Les points essentiels à retenir et à mentionner sont :
+\begin{itemize}
+  \item SAD DNS réactive une forme de \emph{DNS cache poisoning} en exploitant un canal auxiliaire (side-channel) lié au comportement du système d'exploitation (par ex. limitations de fréquence/ICMP) pour déduire le port source UDP et réduire l'entropie nécessaire à l'empoisonnement de cache.
+  \item L'attaque combine inférence du port source (via erreurs ICMP / side-channel) et prédiction du TxID DNS pour injecter des réponses DNS falsifiées dans des résolveurs vulnérables.
+  \item Mitigations usuelles : appliquer les mises à jour OS (corriger le comportement d'ICMP/ratelimiting), activer DNS Cookies (RFC 7873), déployer DNSSEC (validation des signatures), et limiter l'exposition des résolveurs non sécurisés.
+\end{itemize}
+\noindent\textbf{Compétences associées :} Sécurité DNS \score{3}, DNSSEC \score{2}, Hardening OS / correctifs \score{3}. 
+
+% M2 CSI : cryptanalyse & implémentations
+\cvsection{M2 CSI — Travaux de cryptanalyse}
+\cvevent{M2 CSI}{Cryptanalyse \& implémentations}{Université}
+{Travail sur cryptanalyse active : attaque par faute sur AES (implémentation en Python) avec parallélisation des expériences ; étude de cryptanalyse de signatures numériques via représentation euclidienne ; mise en place d'automatisations et tests unitaires pour répéter les campagnes d'attaque. Étude historique d'attaques sur WEP/WPA (downgrade, faiblesses), et architecture d'authentification/systèmes sécurisés.}{
+\textbf{Compétences associées :} Cryptanalyse (AES, attaques par faute) \score{5}, Python (implémentation & tests) \score{5}, Parallélisation & scripting \score{4}, Analyse de protocoles sans-fil (WEP/WPA) \score{3}, Authentification & PKI \score{3}.
+}
+
+
+\vspace{6pt}
 \cvsection{Mots-clé (pour tri commercial / recherche de mission)}
 \noindent\small
 DevSecOps, CI/CD, GitLab CI, Jenkins, GitOps, Ansible, Terraform, IaC, Docker, Kubernetes, Helm, ArgoCD, Dockerfile, Prometheus, Grafana, ELK, SIEM, fuzzing, MCUboot, AFL++, Unicorn, Unicorn-AFL, QEMU, instrumentation, sanitizers, ASAN, UBSAN, coverage, custom mutator, embedded security, ARM, arm-none-eabi, kernel modules, Linux (Debian/Ubuntu), SSH, firewalls, VLAN, NAT, IPSec, TLS, Kerberos, PKI, JavaCard, DPA, fault injection, ECDSA, AES, reverse engineering, Ghidra, GDB, Python, Bash, C, C++, Assembly, LaTeX, Doxygen, RGPD, ANSSI, conformité.
