@@ -15,7 +15,11 @@
 \usetikzlibrary{shapes, backgrounds, mindmap, trees}
 \usepackage{color}
 \usepackage{fancyhdr}
-\usepackage{atbegshi} % pour les headers/footers conditionnels
+\usepackage{eso-pic} % pour ajouter un fond personnalisé
+
+% ===== Option pour le fond de page de garde =====
+% Décommente la ligne ci-dessous pour activer le mode "avec marges"
+% \def\backgroundwithmargins{}
 
 % ADN colors
 \definecolor{redADN}{RGB}{244,80,88}
@@ -30,41 +34,51 @@
 % ---------- PAGE DE GARDE ----------
 \newcommand{\maketitlepage}{
 \begin{titlepage}
-\pagecolor{black} % fond noir
-\color{white}     % texte blanc par défaut
-\centering
-\vspace*{3cm}
-\includegraphics[width=0.5\textwidth]{logo_blanc.png} % logo grand centré
-\vspace{2cm}
+% Fond avec ou sans marges
+\ifdefined\backgroundwithmargins
+  \AddToShipoutPictureBG*{%
+    \AtPageUpperLeft{%
+      \raisebox{-\paperheight+1.5cm}{%
+        \includegraphics[width=\textwidth,height=\textheight]{adn_background.png}%
+      }%
+    }%
+  }
+\else
+  \AddToShipoutPictureBG*{%
+    \put(0,0){%
+      \includegraphics[width=\paperwidth,height=\paperheight]{adn_background.png}%
+    }%
+  }
+\fi
 
+% Logo en haut à droite
+\vspace*{1.5cm}
+\hfill\includegraphics[width=8cm]{logo_blanc.png}
+\vspace{5cm}
+
+\centering
 % Encadré arrondi
 \begin{tikzpicture}
-\node[draw=blueADN, fill=blueADN!20, rounded corners=10pt, text width=0.7\textwidth, align=center, minimum height=2cm] 
-{\Large \textbf{Dossier de compétences d'un ingénieur en cybersécurité débutant}};
+\node[draw=blueADN, fill=blueADN!20, rounded corners=10pt, text width=0.7\textwidth, align=center, minimum height=2cm]{
+{\huge \textbf{Dossier de compétences}}
+{\Large \textbf{Ingénieur cybersécurité débutant}}
+};
+
 \end{tikzpicture}
 
 \vfill
 \end{titlepage}
-\pagecolor{white} % revenir au fond blanc pour les pages suivantes
-\color{black}      % texte noir
 }
 
 % ---------- HEADER ET FOOTER ----------
 \fancypagestyle{main}{
     \fancyhf{}
     % Header : logo en haut à droite
-    \fancyhead[R]{\includegraphics[width=3.8cm]{logo_noir.png}}
+    \fancyhead[R]{\includegraphics[width=5cm]{logo_noir.png}\medskip}
     % Footer : texte légal
     \fancyfoot[C]{\footnotesize Ce document est la propriété de la société Adwise Networks. Il ne peut être reproduit ou communiqué sans validation écrite.}
-    \renewcommand{\headrulewidth}{0pt} % pas de ligne
+    \renewcommand{\headrulewidth}{0pt}
     \renewcommand{\footrulewidth}{0pt}
-}
-
-% Appliquer le style aux pages à partir de la 2
-\AtBeginShipout{%
-  \ifnum\value{page}>1
-    \thispagestyle{main}%
-  \fi
 }
 
 % ---------- small helper commands ----------
@@ -83,10 +97,10 @@
   $\cdot$ #5\\[6pt]
 }
 
-
 \begin{document}
 
 \maketitlepage
+\pagestyle{main} % active le header/footer à partir d'ici
 
 \vspace{-8pt}
 \begin{center}
