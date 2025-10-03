@@ -1,4 +1,7 @@
 % Dossier de compétences -- version orientée DevSecOps/Automatisation/Réseaux
+
+% https://chatgpt.com/c/68dea72e-d230-832d-a921-faa6e15d0cff
+
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -6,7 +9,6 @@
 \renewcommand*\familydefault{\sfdefault}
 \usepackage{moresize}
 \usepackage[a4paper,top=1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm]{geometry}
-% Pas de fancyhdr (par demande)
 \setlength{\parindent}{0mm}
 
 \usepackage{multicol}
@@ -14,32 +16,60 @@
 \newcolumntype{x}[1]{>{\raggedleft\hspace{0pt}}p{#1}}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usetikzlibrary{shapes, backgrounds,mindmap, trees}
+\usetikzlibrary{shapes, backgrounds, mindmap, trees}
 \usepackage{color}
-\usepackage{everypage} % pour ajouter le logo sur chaque page via TikZ
 
 % ADN colors
-\definecolor{redADN}{RGB}{244,80,88} % official color palette
-\definecolor{blueADN}{RGB}{102,142,212} % official color palette
-
+\definecolor{redADN}{RGB}{244,80,88}
+\definecolor{blueADN}{RGB}{102,142,212}
 \definecolor{sectcol}{RGB}{244,80,88}
 \definecolor{bgcol}{RGB}{102,142,212}
 \definecolor{softcol}{RGB}{225,225,225}
 
 % Score macro : \score{<n>} -> (n/5)
-\newcommand{\score}[1]{\,\textnormal{(#1/5)}}
+\newcommand{\score}[1]{\,(#1/5)}
 
-% Place logo top-right on every page (placeholder: logo.png)
-\AddEverypageHook{%
-  \begin{tikzpicture}[remember picture,overlay]
-    % adjust the raisebox value or width if needed
-    \node[anchor=north east] at (current page.north east) {\raisebox{-1cm}{\includegraphics[width=3.0cm]{logo_noir.png}}};
-  \end{tikzpicture}%
+% ---------- Page de garde ----------
+\usepackage{lipsum} % juste pour filler, tu peux supprimer
+\usepackage{tikz}
+\usepackage{geometry}
+\geometry{a4paper,top=1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm}
+
+% Logo sur toutes les pages sauf la 1ère
+\usepackage{atbegshi}
+\AtBeginShipout{%
+  \ifnum\value{page}>1
+    \AtBeginShipoutAddToBox{%
+      \begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=north east] at (current page.north east)
+          {\raisebox{-1.2cm}{\includegraphics[width=3.8cm]{logo_noir.png}}};
+      \end{tikzpicture}%
+    }
+  \fi
 }
 
-% small helper commands (adapted from template, kept minimal)
+% Page de garde personnalisée
+\newcommand{\maketitlepage}{
+\begin{titlepage}
+\centering
+\vspace*{3cm}
+\includegraphics[width=0.5\textwidth]{logo_blanc.png} % logo grand centré
+\vspace{2cm}
+
+% Encadré arrondi
+\begin{tikzpicture}
+\node[draw=blueADN, fill=blueADN!20, rounded corners=10pt, text width=0.7\textwidth, align=center, minimum height=2cm] 
+{\Large \textbf{Dossier de compétences d'un ingénieur en cybersécurité débutant}};
+\end{tikzpicture}
+
+\vfill
+\end{titlepage}
+}
+
+
+% small helper commands (kept minimal)
 \renewcommand{\thepage}{}	% no page number
-\renewcommand{\thesection}{}			
+\renewcommand{\thesection}{}
 
 \newcommand{\cvsection}[1]{\begin{center}\large\textcolor{sectcol}{\textbf{#1}}\end{center}}
 \newcommand{\cvevent}[5]{%
@@ -54,7 +84,10 @@
 }
 
 \begin{document}
-\vspace{-8pt} 
+
+\maketitlepage
+
+\vspace{-8pt}
 \begin{center}
   \HUGE \textcolor{sectcol}{\rule[-1mm]{1mm}{0.9cm}} \textsc{Dossier de compétences}\\[2pt]
   \large Spécialiste cybersécurité \& ingénierie DevSecOps
@@ -100,15 +133,15 @@ Python \score{5}, Bash \score{4}, PowerShell \score{2}, C \score{4}, C++ \score{
 \end{multicols}
 
 \vspace{6pt}
-\cvsection{Expériences sélectionnées orientées DevOps / DevSecOps}
+\cvsection{Expériences sélectionnées orientées DevOps \& DevSecOps}
 
-\cvevent{Mars 2025 -- Août 2025}{STMicroelectronics — Stage de fin d'études}{Labège (Toulouse)}{Fuzzing du bootloader MCUboot et développement de grammars pour tests automatisés}{Sécurité système et logicielle des systèmes embarqués ARM. Mise en place de harness d'émulation (QEMU / Unicorn), intégration de campagnes de fuzzing automatisées; instrumentation pour coverage et rapports.}
+\cvevent{Mars 2025 -- Août 2025}{STMicroelectronics -- Stage de fin d'études}{Labège (Toulouse)}{Fuzzing du bootloader MCUboot et développement de grammars pour tests automatisés}{Sécurité système et logicielle des systèmes embarqués ARM. Mise en place de harness d'émulation (QEMU / Unicorn), intégration de campagnes de fuzzing automatisées, instrumentation pour coverage et rapports.}
 
-\cvevent{Mai 2024 -- maintenant}{Solving Company — Mission / Consultant}{Bordeaux (freelance)}{Conformité ANSSI et RGPD pour traitements de données de santé; recommandations techniques}{Mise en place de bonnes pratiques DevSecOps, pipelines CI, automatisation des déploiements, gestion de secrets et conformité.}
+\cvevent{Mai 2024 -- maintenant}{Solving Company -- Mission / Consultant}{Bordeaux (freelance)}{Conformité ANSSI et RGPD pour traitements de données de santé; recommandations techniques}{Mise en place de bonnes pratiques DevSecOps, pipelines CI, automatisation des déploiements, gestion de secrets et conformité.}
 
-\cvevent{Novembre 2023}{Crédit Agricole GIP — Immersion SOC (N3)}{Gradignan}{Parsing d'IOCs, analyse du SIEM Splunk}{Approche opérationnelle SOC, triage d'incidents, supervision.}
+\cvevent{Novembre 2023}{Crédit Agricole GIP -- Immersion SOC (N3)}{Gradignan}{Parsing d'IOCs, analyse du SIEM Splunk}{Approche opérationnelle SOC, triage d'incidents, supervision.}
 
-\cvevent{Mai 2021 -- Juil 2021}{Laboratoire XLIM UMR CNRS 7252 — Stage}{Poitiers}{Conception de travaux pratiques (C++)}{Développement d'exercices avancés, tests automatisés, packaging et documentation.}
+\cvevent{Mai 2021 -- Juil 2021}{Laboratoire XLIM UMR CNRS 7252 -- Stage}{Poitiers}{Conception de travaux pratiques (C++)}{Développement d'exercices avancés, tests automatisés, packaging et documentation.}
 
 \vspace{6pt}
 \cvsection{Projets et réalisations (extraits)}
@@ -126,65 +159,43 @@ Python \score{5}, Bash \score{4}, PowerShell \score{2}, C \score{4}, C++ \score{
 \cvsection{Projets académiques, associatifs et parcours}
 
 % Lycée
-\cvevent{Lycée}{Radio & couverture d'événements musicaux}{Lycée local}
-{Organisation et couverture technique d'événements musicaux, prise en charge de la captation audio et gestion du flux de diffusion.}
-{\textbf{Compétences associées :} Communication orale \score{3}, Gestion de flux/streaming basique \score{2}, Anglais technique (maths) \score{2} }
+\cvevent{Lycée}{Radio \& couverture d'événements musicaux}{Lycée local}{Organisation et couverture technique d'événements musicaux, prise en charge de la captation audio et gestion du flux de diffusion.}{\textbf{Compétences associées :} Communication orale \score{3}, Gestion de flux/streaming basique \score{2}, Anglais technique (maths) \score{2}}
 
 % Parcours renforcé L1-L2
-\cvevent{Parcours renforcé (L1-L2)}{Travaux en binôme et présentations techniques}{Université}
-{Exposés oraux réguliers sur sujets techniques en français ; cours d'anglais d'ingénieur en anglais ; projets en binômes avec livrables partagés.}{Compétences : présentations techniques, documentation en anglais, collaboration en binôme, gestion de versions. \\ \textbf{Compétences associées :} Présentation technique \score{4}, Anglais technique \score{3}, Travail en binôme / Git \score{3}.}
+\cvevent{Parcours renforcé (L1-L2)}{Travaux en binôme et présentations techniques}{Université}{Exposés oraux réguliers sur sujets techniques en français; cours d'anglais d'ingénieur en anglais; projets en binômes avec livrables partagés.}{\textbf{Compétences associées :} Présentation technique \score{4}, Anglais technique \score{3}, Travail en binôme / Git \score{3}}
 
 % Licence 3
-\cvevent{Licence 3}{Développement d'un jeu vidéo en équipe (C++)}{Université / Godot}
-{Développement d'un jeu en C++ avec moteur Godot ; coordination avec lead dev et équipes artistiques pour intégrer sons et visuels ; conception de bases de données relationnelles ; utilisation d'un ORM pour un projet de plateforme en ligne (backend Symfony) ; étude d'injection SQL sur les requêtes. Travail sur Scilab pour algorithmes d'analyse mathématique.}{
-\textbf{Compétences associées :} C++ \score{3}, Godot / intégration multimédia \score{2}, Conception BD relationnelle \score{3}, ORM / Symfony (backend) \score{2}, Sécurité appliquée aux requêtes (injection SQL) \score{3}, Scilab / algorithmique \score{3}.
-}
+\cvevent{Licence 3}{Développement d'un jeu vidéo en équipe (C++)}{Université / Godot}{Développement d'un jeu en C++ avec moteur Godot; coordination avec lead dev et équipes artistiques pour intégrer sons et visuels; conception de bases de données relationnelles; utilisation d'un ORM pour un projet de plateforme en ligne (backend Symfony); étude d'injection SQL sur les requêtes; travail sur Scilab pour algorithmes d'analyse mathématique.}{\textbf{Compétences associées :} C++ \score{3}, Godot / intégration multimédia \score{2}, Conception BD relationnelle \score{3}, ORM / Symfony (backend) \score{2}, Sécurité appliquée aux requêtes (injection SQL) \score{3}, Scilab / algorithmique \score{3}}
 
 % Master 1 ROAD (semestre 1)
-\cvevent{M1 ROAD (S1)}{Algorithmes gloutons \& projet Flop!Edt}{Université}
-{Étude d'algorithmes gloutons et problèmes d'optimisation (tournées, graphe, flots). Projet professionnalisant : Flop!Edt (C++) — création d'un outil de génération d'emplois du temps comme problème de maximisation avec relaxation lagrangienne.}{
-\textbf{Compétences associées :} Algorithmique (gloutons, graphes) \score{4}, C++ projet pro \score{3}, Recherche opérationnelle \score{3}, Modélisation de contraintes \score{3}.
-}
+\cvevent{M1 ROAD (S1)}{Algorithmes gloutons \& projet Flop!Edt}{Université}{Étude d'algorithmes gloutons et problèmes d'optimisation (tournées, graphe, flots). Projet professionnalisant : Flop!Edt (C++) — création d'un outil de génération d'emplois du temps comme problème de maximisation avec relaxation lagrangienne.}{\textbf{Compétences associées :} Algorithmique (gloutons, graphes) \score{4}, C++ projet pro \score{3}, Recherche opérationnelle \score{3}, Modélisation de contraintes \score{3}}
 
 % Année de césure
-\cvevent{Année de césure}{Support associatif et déploiement d'outils}{Alt- (association)}
-{Administration d'identifiants et mise en place de partage de documents sécurisé (éviter Google Drive) : déploiement et formation à BitWarden, sélection d'outils libres et bonnes pratiques. Développement d'un service de conseil cyber pour TPE/PME (cadre NIS) ; formation via SecNumAcadémie de l'ANSSI.}{
-\textbf{Compétences associées :} Gouvernance & bonnes pratiques (NIS) \score{3}, Gestion de secrets (BitWarden) \score{4}, Formation / sensibilisation \score{4}, Conseil TPE/PME \score{3}.
-}
+\cvevent{Année de césure}{Support associatif et déploiement d'outils}{Alt- (association)}{Administration d'identifiants et mise en place de partage de documents sécurisé (éviter Google Drive) : déploiement et formation à BitWarden, sélection d'outils libres et bonnes pratiques. Développement d'un service de conseil cyber pour TPE/PME (cadre NIS); formation via SecNumAcadémie de l'ANSSI.}{\textbf{Compétences associées :} Gouvernance \& bonnes pratiques (NIS) \score{3}, Gestion de secrets (BitWarden) \score{4}, Formation / sensibilisation \score{4}, Conseil TPE/PME \score{3}}
 
 % Etu'Récup
-\cvevent{Etu'Récup}{Ateliers collaboratifs \& réparation électronique}{Collectif local}
-{Ateliers de réparation électronique et informatique ; diagnostics, remplacement de composants, remise en service, documentation des procédures ; travail entreprenarial autonome sur une offre de consulting cyber pour petites structures.}{
-\textbf{Compétences associées :} Réparation hardware \score{3}, Diagnostic système \score{3}, Autonomie projet / consulting \score{3}.
-}
+\cvevent{Etu'Récup}{Ateliers collaboratifs \& réparation électronique}{Collectif local}{Ateliers de réparation électronique et informatique; diagnostics, remplacement de composants, remise en service, documentation des procédures; travail entreprenarial autonome sur une offre de consulting cyber pour petites structures.}{\textbf{Compétences associées :} Réparation hardware \score{3}, Diagnostic système \score{3}, Autonomie projet / consulting \score{3}}
 
 % Solving Company
-\cvevent{Solving Company}{Conformité RGPD \& revue système}{Solving Company (mission)}
-{Revue système et réseaux pour conformité RGPD ; formation des collaborateurs sur réflexes cybersécurité basés sur fiches synthèses ANSSI ; hébergement des données en Europe et stratégies de sauvegarde locales/distantes.}{
-\textbf{Compétences associées :} RGPD \score{4}, Revue sécurité système & réseaux \score{4}, Politique de sauvegarde / hébergement EU \score{3}, Sensibilisation collaborateurs \score{4}.
-}
+\cvevent{Solving Company}{Conformité RGPD \& revue système}{Solving Company (mission)}{Revue système et réseaux pour conformité RGPD; formation des collaborateurs sur réflexes cybersécurité basés sur fiches synthèses ANSSI; hébergement des données en Europe et stratégies de sauvegarde locales/distantes.}{\textbf{Compétences associées :} RGPD \score{4}, Revue sécurité système \& réseaux \score{4}, Politique de sauvegarde / hébergement EU \score{3}, Sensibilisation collaborateurs \score{4}}
 
-% M1 CSI : SAD DNS synthèse (voir notes externes)
-\cvsection{M1 CSI — SAD DNS (points essentiels)}
+% M1 CSI : SAD DNS synthèse
+\cvsection{M1 CSI --- SAD DNS (points essentiels)}
 \noindent Lors du M1 CSI tu as travaillé sur l'étude SAD DNS (Side-channel AttackeD DNS). Les points essentiels à retenir et à mentionner sont :
 \begin{itemize}
   \item SAD DNS réactive une forme de \emph{DNS cache poisoning} en exploitant un canal auxiliaire (side-channel) lié au comportement du système d'exploitation (par ex. limitations de fréquence/ICMP) pour déduire le port source UDP et réduire l'entropie nécessaire à l'empoisonnement de cache.
-  \item L'attaque combine inférence du port source (via erreurs ICMP / side-channel) et prédiction du TxID DNS pour injecter des réponses DNS falsifiées dans des résolveurs vulnérables.
-  \item Mitigations usuelles : appliquer les mises à jour OS (corriger le comportement d'ICMP/ratelimiting), activer DNS Cookies (RFC 7873), déployer DNSSEC (validation des signatures), et limiter l'exposition des résolveurs non sécurisés.
+  \item L'attaque combine inférence du port source et prédiction du TxID DNS pour injecter des réponses DNS falsifiées dans des résolveurs vulnérables.
+  \item Mitigations usuelles : appliquer les mises à jour OS, activer DNS Cookies (RFC 7873), déployer DNSSEC (validation des signatures), et limiter l'exposition des résolveurs non sécurisés.
 \end{itemize}
-\noindent\textbf{Compétences associées :} Sécurité DNS \score{3}, DNSSEC \score{2}, Hardening OS / correctifs \score{3}. 
+\noindent\textbf{Compétences associées :} Sécurité DNS \score{3}, DNSSEC \score{2}, Hardening OS / correctifs \score{3}
 
 % M2 CSI : cryptanalyse & implémentations
-\cvsection{M2 CSI — Travaux de cryptanalyse}
-\cvevent{M2 CSI}{Cryptanalyse \& implémentations}{Université}
-{Travail sur cryptanalyse active : attaque par faute sur AES (implémentation en Python) avec parallélisation des expériences ; étude de cryptanalyse de signatures numériques via représentation euclidienne ; mise en place d'automatisations et tests unitaires pour répéter les campagnes d'attaque. Étude historique d'attaques sur WEP/WPA (downgrade, faiblesses), et architecture d'authentification/systèmes sécurisés.}{
-\textbf{Compétences associées :} Cryptanalyse (AES, attaques par faute) \score{5}, Python (implémentation & tests) \score{5}, Parallélisation & scripting \score{4}, Analyse de protocoles sans-fil (WEP/WPA) \score{3}, Authentification & PKI \score{3}.
-}
-
+\cvsection{M2 CSI --- Travaux de cryptanalyse}
+\cvevent{M2 CSI}{Cryptanalyse \& implémentations}{Université}{Travail sur cryptanalyse active : attaque par faute sur AES (implémentation en Python) avec parallélisation des expériences; étude de cryptanalyse de signatures numériques via représentation euclidienne; mise en place d'automatisations et tests unitaires pour répéter les campagnes d'attaque. Étude historique d'attaques sur WEP/WPA (downgrade, faiblesses), et architecture d'authentification/systèmes sécurisés.}{\textbf{Compétences associées :} Cryptanalyse (AES, attaques par faute) \score{5}, Python (implémentation \& tests) \score{5}, Parallélisation \& scripting \score{4}, Analyse de protocoles sans-fil (WEP/WPA) \score{3}, Authentification \& PKI \score{3}}
 
 \vspace{6pt}
 \cvsection{Mots-clé (pour tri commercial / recherche de mission)}
-\noindent\small
+\noindent\normalsize
 DevSecOps, CI/CD, GitLab CI, Jenkins, GitOps, Ansible, Terraform, IaC, Docker, Kubernetes, Helm, ArgoCD, Dockerfile, Prometheus, Grafana, ELK, SIEM, fuzzing, MCUboot, AFL++, Unicorn, Unicorn-AFL, QEMU, instrumentation, sanitizers, ASAN, UBSAN, coverage, custom mutator, embedded security, ARM, arm-none-eabi, kernel modules, Linux (Debian/Ubuntu), SSH, firewalls, VLAN, NAT, IPSec, TLS, Kerberos, PKI, JavaCard, DPA, fault injection, ECDSA, AES, reverse engineering, Ghidra, GDB, Python, Bash, C, C++, Assembly, LaTeX, Doxygen, RGPD, ANSSI, conformité.
 
 \vspace{8pt}
