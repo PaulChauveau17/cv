@@ -1,309 +1,233 @@
-% Clean CV/Resume Template, by Bennet B <dev@bennet.cc>
-% CC0, Public-Domain
-% 
-% Permission is hereby granted, free of charge, to any person obtaining a copy
-% of this template and associated files (the "Template"), to deal
-% in the Template without restriction, including without limitation the rights
-% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-% copies of the Template, and to permit persons to whom the Template is
-% furnished to do so, subject to the following conditions:
-%
-% The above copyright notice and this permission notice shall be included in all
-% copies or substantial portions of the Template.
-%
-% THE TEMPLATE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-% OUT OF OR IN CONNECTION WITH THE TEMPLATE OR THE USE OR OTHER DEALINGS IN THE
-% TEMPLATE.
-%
-% based on Modern CV by Habib Semouma
-% https://www.overleaf.com/latex/templates/modern-cv-slash-resume-template/vjrqdkpjckwj
-%
-
-\RequirePackage{etex}
-\documentclass[oneside]{article}
-
-\usepackage{wallpaper}
-\usepackage{geometry} % small marging in the bottom
-\usepackage[
-  unicode=true,
-  bookmarks=true,
-  bookmarksnumbered=false,
-  bookmarksopen=true,
-  bookmarksopenlevel=1,
-  breaklinks=false,
-  pdfborder={0 0 0},
-  backref=false,
-  colorlinks=false
-  ]{hyperref}
-\usepackage{lastpage}
-\usepackage{hyphenat}
-\usepackage{hyphsubst}
-\usepackage{tabularx}
-\usepackage{moresize}
-\usepackage[document]{ragged2e}
-% \usepackage{parskip}
-\usepackage{worldflags}
-
-\usepackage[scaled]{helvet}
-\usepackage{fontawesome5}
-\usepackage[defaultfam,tabular,oldstyle]{montserrat}
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+\usepackage[default]{raleway}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{moresize}
+\usepackage[a4paper,includeheadfoot,top=1.5cm,bottom=1.5cm,left=1.5cm,right=1.5cm,headheight=1cm]{geometry}
+\setlength{\parindent}{0mm}
 
-\usepackage{titlesec}
-\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{array}
+\newcolumntype{x}[1]{>{\raggedleft\hspace{0pt}}p{#1}}
+\usepackage{graphicx}
 \usepackage{tikz}
+\usetikzlibrary{shapes, backgrounds, mindmap, trees}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{eso-pic} % pour ajouter un fond personnalisé
 
-\usepackage{atbegshi}
-\usepackage{etoolbox}
+% ===== Option pour le fond de page de garde =====
+% Décommente la ligne ci-dessous pour activer le mode "avec marges"
+% \def\backgroundwithmargins{}
 
-\newif\ifkeeppage
-\newcommand{\keeppages}[1]{% \keeppages{<csv list>}
-  \xdef\keep@pages{#1}% Store pages to keep
-  \AtBeginShipout{% At shipout, decide whether to discard page/not
-    \keeppagefalse%
-    \renewcommand*{\do}[1]{% How to handle each page entry in csv list
-      \ifnum\value{page}=##1\relax%
-        \keeppagetrue% Page should be kept
-        \gdef\do####1{}% Do nothing further
-      \fi%
-    }%
-    \expandafter\docsvlist\expandafter{\keep@pages}% Process list of pages to keep
-    \ifkeeppage\else\AtBeginShipoutDiscard\fi% Discard page/not
-  }%
+% Solutec colors
+\definecolor{redSolu}{RGB}{233,9,79}
+\definecolor{greySolu}{RGB}{44,44,51}
+\definecolor{sectcol}{RGB}{244,80,88}
+\definecolor{bgcol}{RGB}{102,142,212}
+\definecolor{softcol}{RGB}{225,225,225}
+
+% Score macro : \score{<n>} -> (n/5)
+\newcommand{\score}[1]{\,(#1/5)}
+
+% ---------- PAGE DE GARDE ----------
+% \newcommand{\maketitlepage}{
+% \begin{titlepage}
+% % Fond avec ou sans marges
+% \ifdefined\backgroundwithmargins
+%   \AddToShipoutPictureBG*{%
+%     \AtPageUpperLeft{%
+%       \raisebox{-\paperheight+1.5cm}{%
+%         \includegraphics[width=\textwidth,height=\textheight]{adn_background.png}%
+%       }%
+%     }%
+%   }
+% \else
+%   \AddToShipoutPictureBG*{%
+%     \put(0,0){%
+%       \includegraphics[width=\paperwidth,height=\paperheight]{adn_background.png}%
+%     }%
+%   }
+% \fi
+
+% % Logo en haut à droite
+% \vspace*{1.5cm}
+% \hfill\includegraphics[width=8cm]{logo_blanc.png}
+% \vspace{5cm}
+
+% \centering
+
+% \begin{tikzpicture}
+
+% % Encadré arrondi
+% \node[draw=blueADN, fill=blueADN!20, rounded corners=10pt, text width=0.7\textwidth, align=center, minimum height=2cm]{
+% {\huge \textbf{Dossier de compétences}}
+% {\Large \textbf{Ingénieur cybersécurité débutant}}
+% };
+
+% \end{tikzpicture}
+
+% \vfill
+% \end{titlepage}
+% }
+
+% ----- Header/Footer -----
+\fancypagestyle{main}{
+  \fancyhf{}
+  % Header : logo en haut à droite
+  \fancyhead[R]{\includegraphics[width=4cm]{logo_SOLUTEC.svg}}
+  % Footer : texte légal + page number
+  % \fancyfoot[C]{\footnotesize Ce document est la propriété de la société Adwise Networks. Il ne peut être reproduit ou communiqué sans validation écrite.}
+  \fancyfoot[R]{\footnotesize \thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
 }
-\keeppages{1}
 
-\setlength{\parindent}{0pt}
-\titleformat{\section}{\normalfont}{}{0pt}{}
+%\setlength{\headheight}{1cm}
 
-\renewcommand{\arraystretch}{1.4}
+% ---------- small helper commands ----------
+\renewcommand{\thepage}{}	% no page number
+\renewcommand{\thesection}{}
 
-\setlength\fboxrule{0pt}
-\setlength\fboxsep{12pt}
-% \setlength{\parskip}{.5\baselineskip plus 2pt}
-% \renewcommand{\baselinestretch}{1.1}
-
-\titlespacing{\section}{0pt}{1.5ex plus .1ex minus .2ex}{1pc}
-
-\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
-
-\hypersetup{
-  pdftitle={CV-Paul-Chauveau},
-  pdfauthor={Paul Chauveau},
-  pdfsubject={Curriculum vitae}
+\newcommand{\cvsection}[1]{\begin{center}\large\textcolor{sectcol}{\textbf{#1}}\end{center}}
+\newcommand{\cvevent}[5]{%
+\begin{tabular*}{1\textwidth}{p{13.6cm}  x{3.9cm}}
+	\textbf{#2} - \textcolor{bgcol}{#3} &   \vspace{2.5pt}\textcolor{sectcol}{#1}
+\end{tabular*}
+\vspace{-8pt}
+\textcolor{softcol}{\hrule}
+\vspace{6pt}
+  $\cdot$ #4\\[3pt]
+  $\cdot$ #5\\[6pt]
 }
-
-\geometry{
-  a4paper,
-  left=0pt,
-  right=0pt,
-  top=0pt,
-  bottom=0pt,
-  nohead,
-  nomarginpar
-} % includefoot
-
-% Background Color of the Sidebar Column
-\definecolor{sidebg}{cmyk}{1, 0.02, 0, 0.56}
-% Background Color of the Main Column
-\definecolor{mainbg}{cmyk}{0, 0, 0.07, 0.04}
-
-% Text Color of the Main Column
-\definecolor{maintext}{cmyk}{1, 0.02, 0, 0.8}
-% Text Color of the Sidebar Column
-\definecolor{sidetext}{cmyk}{0, 0, 0.07, 0.04}
-
-\pagecolor{mainbg}
 
 \begin{document}
-\setlength{\topskip}{0pt}\setlength{\footskip}{0pt}
-\fcolorbox{red}{sidebg}{
-  \begin{minipage}[t][\textheight-2\fboxsep-2\fboxrule][t]{\dimexpr0.40\textwidth-2\fboxrule-2\fboxsep\relax}
-    \color{sidetext}
-    {\bfseries\scshape\HUGE Paul} \\
-    {\bfseries\scshape\HUGE Chauveau}
-    \vspace{.2cm} \\
-    {\large Spécialiste cybersécurité}
-    \vspace{.3cm} \\
-    \rule{\linewidth}{0.4pt}
-    \addcontentsline{toc}{section}{Informations personnelles}
-    \section*{\large Informations personnelles}
-    \begin{tabularx}{\textwidth}{cY}
-      \faBirthdayCake{} & 10/01/2001, 17000, La Rochelle \\
-      \faFlag{}         & Nationalité Française \\
-      \faHome{}         & 12, bd Monplaisir, 31400, Toulouse \\
-      \faCar{}          & Permis de conduire (catégorie B) \\
-      \faPhone{}        & +33 6 78 88 99 17 \\
-      \faEnvelope{}     & \href{mailto:chauveaupaul17@gmail.com}{chauveaupaul17@gmail.com} \\
-      \faLink{}         & \href{https://linktr.ee/paul_chauveau_33}{linktr.ee/paul\_chauveau\_33} \\
-    \end{tabularx}
-    \vspace{.3cm} \\
-    \rule{\linewidth}{0.4pt}
-    \addcontentsline{toc}{section}{Compétences techniques}
-    \section*{\large Compétences techniques}
-    \begin{tabularx}{\textwidth}{cY}
-      %\faSearch{}     &  Google advanced search, Tor, Wayback Machine \\
-      \faGreaterThan{}  & Python, Bash, Powershell \\ % scripting
-      \faCode{}         & C, C++, Java, Assembly ARM/x86-64 \\ % lower level coding
-      \faLinux{}        & GNU/Linux (Debian, Ubuntu) \\
-      \faWindows{}      & Windows OS, suite Microsoft 365 \\
-      \faBoxes{}        & QEMU, VirtualBox, Unicorn, Docker \\
-      \faCodeBranch{}   & Git, Visual Studio Code, SSH \\
-      \faPen{}          & \LaTeX, Markdown, HTML, Doxygen \\
-    \end{tabularx}
-    \vspace{.3cm} \\
-    \rule{\linewidth}{0.4pt}
-    \addcontentsline{toc}{section}{Compétences transversales}
-    \section*{\large Compétences transversales}
-    \begin{tabularx}{\textwidth}{cY}
-      \faHandHoldingHeart{} & Coopération, travail en groupe \\
-      \faLightbulb{}        & Curiosité, esprit d'initiative \\
-      \faFolder{}           & Organisation \\
-    \end{tabularx}
-    \vspace{.3cm} \\
-    \rule{\linewidth}{0.4pt}
-    \addcontentsline{toc}{section}{Langues}
-    \section*{\large Langues}
-    \begin{tabular}{cl cl}
-      \worldflag[width=0.28cm]{FR}  & Français : langue maternelle \\
-      \worldflag[width=0.21cm]{GB}  & Anglais : B2/C1 - mobilités au R-U \\
-      \worldflag[width=0.252cm]{DE} & Allemand : A2 - voyage à Berlin \\
-    \end{tabular}
-    \vspace{.6cm} \\
-    \rule{\linewidth}{0.4pt}
-    \addcontentsline{toc}{section}{Hobbies}
-    \section*{\large Centres d'intérêt}
-    \begin{tabularx}{\textwidth}{cY}
-      \faBicycle{}    & Vélo \\
-      %\faAnchor{}     & Voile \\
-      %\faHiking{}     & Rando \\
-      \faLaptopCode{} & Codage \\
-      \faFilm{}       & Cinéma \\
-      \faBookOpen{}   & Littérature \\
-    \end{tabularx}
-    \vspace{.3cm} \\
-  \end{minipage}
-}
-\hfill
-\fcolorbox{red}{mainbg}{
-  \begin{minipage}[t][\dimexpr\textheight-2\fboxrule-2\fboxsep\relax][t]{\dimexpr0.6\textwidth-2\fboxrule-2\fboxsep\relax}
-    \color{maintext}
-    \vspace{0.3cm}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % EDUCATION
-    \phantomsection{}
-    \addcontentsline{toc}{section}{Education}
-    \section*{\scshape\Large Formation \rule{\linewidth}{0.4pt}}
-    {\large \textbf{Master 2 Cryptologie et Sécurité Informatique}} \\
-    {\scshape\fontseries{light}\selectfont Université de Bordeaux \qquad septembre 2024 \textendash{} septembre 2025} \\
-    {\footnotesize Sécurité système :
-    \begin{itemize}
-      \item Reverse engineering statique avec \textit{ghidra} et analyse dynamique avec \textit{gdb}
-      \item Développement de modules pour le noyau Linux 4.18 
-    \end{itemize}
-    }
-    {\footnotesize Cartes à puce et sécurité matérielle :
-      \begin{itemize}
-        \item Développement et sécurité JavaCard
-        \item Attaques par canaux auxiliaires and injection de fautes (pratiqué sur AES)
-      \end{itemize}
-    }
-    {\footnotesize Sécurité des réseaux : IPSec, Kerberos, TLS, MiTM, Metasploit} \\
-    {\footnotesize Attaques statistiques sur ECDSA : projet en trinôme} \\
-    %{\footnotesize Cryptanalyse : attaques implémentées en Python (Sage)} \\
-    {\footnotesize Séminaires en anglais : Intelligence Artificielle et enjeux} \\[1ex]
 
-    {\large \textbf{Master 1 Cryptologie et Sécurité Informatique}} \\
-    {\scshape\fontseries{light}\selectfont Université de Bordeaux \qquad septembre 2023 \textendash{} juin 2024} \\
-    {\footnotesize Sécurité des logiciels : overflow, string bugs, corruption mémoire} \\
-    {\footnotesize Administration des réseaux : scans, VLAN, NAT, firewall} \\
-    {\footnotesize Étude en trinôme des empoisonnements de cache DNS (\href{https://www.saddns.net/}{SAD DNS})} \\
-    {\footnotesize Systèmes d'exploitation (UNIX), anglais technique} \\
-    {\footnotesize Parallélisme CPU et GPU en C : AVX, OpenMP \& OpenCL} \\[1ex]
+% \maketitlepage
+% \pagestyle{main} % active le header/footer à partir d'ici
 
-  
-    {\large \textbf{Année de césure}} \\
-    {\scshape\fontseries{light}\selectfont Talence \& Pessac \qquad février 2022 \textendash{} septembre 2023} \\
-    {\footnotesize Service civique dans une ressourcerie associative Etu'récup} \\
-    {\footnotesize Bénévolat sur les campus, co-vice présidence de l'association Alt-} \\[2ex]
-    
-    {\large \textbf{Recherche opérationnelle et aide à la décision}} \\
-    {\scshape\fontseries{light}\selectfont Université de Bordeaux \qquad septembre 2021 \textendash{} janvier 2022} \\
-    {Semestre 1 du Master 1 de mathématiques \textendash{} mention bien} \\[1ex]
-    {\footnotesize Algos des graphes, programmation linéaire, JUnit pour Java, statistique} \\[2ex]
-    
-    {\large \textbf{Licence 3 de mathématiques}} \\
-    {\scshape\fontseries{light}\selectfont Université de Poitiers \qquad septembre 2020 \textendash{} mai 2021} \\
-    {Parcours mathématiques et informatique \textendash{} mention bien} \\[1ex]
-    {\footnotesize Java et design patterns, bases de données, Symfony (PHP), anglais} \\
-    %{\footnotesize Projet de création de jeu-vidéo avec Godot (5 personnes)} \\[2ex]
-    
-    % {\large \textbf{Licence 1 \& 2}} \\
-    % {\scshape\fontseries{light}\selectfont Université de Poitiers \qquad septembre 2018 \textendash{} mai 2020} \\
-    % {Parcours renforcé en mathématiques \textendash{} mention bien} \\[1ex]
-    % {\footnotesize Algèbre linéaire, analyse, électronique, OCaml, anglais} \\
-    % {\footnotesize Projet d'électromagnétique en binôme, présentations orales} \\[2ex]
+\vspace{-8pt}
+\begin{center}
+  \HUGE \textcolor{sectcol}{\rule[-1mm]{1mm}{0.9cm}} \textsc{Dossier de competences}\\[2pt]
+  \large Spécialiste cybersécurité \& ingénierie DevSecOps
+\end{center}
+\vspace{6pt}
 
-    \phantomsection{}
-    \addcontentsline{toc}{section}{Expérience professionnelle}
-    \section*{\scshape\Large {Expérience} \rule{\linewidth}{0.4pt}}
+% META
+\cvsection{Résumé}
+Ingénieur en cybersécurité (M2 Cryptologie et Sécurité Informatique) avec expérience pratique en sécurité logicielle, sécurité système embarqué, reverse engineering et automatisation. Orientation DevOps/DevSecOps : pipelines CI/CD, Infrastructure as Code, conteneurs et orchestration, automatisation des tests de sécurité, monitoring et conformité. Disponible immédiatement.
 
-    {\large \textbf{STMicroelectronics}} \\ 
-    {{\fontseries{medium}\selectfont Stage de fin d'études du Master CSI}} \\
-    {\scshape\fontseries{light}\selectfont Labège (Toulouse) \qquad \qquad Mars 2025 \textendash{} Août 2025} \\
-    \begin{itemize}
-      \setlength{\itemsep}{-3pt}
-      \item Fuzzing du bootloader MCUboot, écriture de grammaires
-      \item Sécurité système et logicielle des systèmes embarqués ARM% et exploitation
-    \end{itemize}
+\vspace{4pt}
+%\noindent\textbf{Contact} : Paul Chauveau — Toulouse — chauveaupaul17@gmail.com — 06 78 88 99 17 \\
+\noindent\textbf{Langues} : Français natif, Anglais niveau professionnel, Allemand débutant
 
-    {\large \textbf{Credit Agricole GIP}} \\ 
-    {{\fontseries{medium}\selectfont Journée d’immersion au Secure Operation Center (Niveau 3)}} \\
-    {\scshape\fontseries{light}\selectfont Gradignan (Bordeaux) \qquad novembre 2023} \\
-    \begin{itemize}
-        \setlength{\itemsep}{-3pt}
-        \item découverte d'un SIEM, parsing d'IOCs, reverse enginering% de malware
-    \end{itemize}
+\cvsection{Compétences techniques}
 
-    {\large \textbf{Laboratoire XLIM UMR CNRS 7252} } \\ 
-    {{\fontseries{medium}\selectfont Stage de Licence 3}} \\
-    {\scshape\fontseries{light}\selectfont Poitiers \quad{} Mai 2021 \textendash{} juillet 2021} \\
-    \begin{itemize}
-        \setlength{\itemsep}{-3pt}
-        \item Création de travaux pratiques en C++ (niveau master 1)
-    \end{itemize}
-    
-    \vspace{-10pt}
+\begin{multicols}{2}
+\textbf{DevSecOps \& Automation}\\
+IaC : Terraform \score{2}, Ansible \score{2}, scripts (Bash \score{4}, Python \score{5}, PowerShell \score{2})\\
+CI/CD : Git \score{5}, GitLab CI/CD \score{2}, Github Actions \score{2}, Jenkins \score{1}\\
+Containerisation \& Orchestration : Docker \score{3}, Kubernetes \score{2}, Podman \score{2}\\[6pt]
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % PROJECTS
-    \phantomsection{}
-    \addcontentsline{toc}{section}{Projets}
-    \section*{\scshape\Large Projets \rule{\linewidth}{0.4pt}}
-    
-    {\large \textbf{Solving Company}} \\
-    {\scshape\fontseries{light}\selectfont Bordeaux et alentours \qquad mai 2024 \textendash{} mars 2025} \\
-    \begin{itemize}
-        \setlength{\itemsep}{-3pt}
-        \item Application des directives techniques de l'ANSSI
-        \item Conformité RGPD pour le traitement des données de santé
-    \end{itemize}
-    
-    % {\large \textbf{LeekWars}} \\ 
-    % {{\fontseries{medium}\selectfont codage en pseudo Java}} \\
-    % {\scshape\fontseries{light}\selectfont\footnotesize Mai 2024 \textendash{} maintenant}
-    % \begin{itemize}
-    %     \setlength{\itemsep}{-3pt}
-    %     \item arbres de décision, optimisation
-    % \end{itemize}
+\textbf{Cloud \& Virtualisation}\\
+Environnements : AWS \score{2}\\
+Virtualisation \& émulation : QEMU/VirtualBox/VMWare \score{3}, Unicorn Engine (émulateur de CPU) \score{4}\\[6pt]
 
-    \vfill
-  \end{minipage}
-}
+\textbf{Systèmes \& Réseaux}\\
+GNU/Linux (Debian et distributions filles (Ubuntu\dots)) \score{4}, systemd \score{3}, SSH \score{4}\\
+Réseaux : VLAN \score{3}, NAT \score{3}, VPN \score{3}, IPSec \score{3}, routage \score{3}, firewall (iptables/nftables) \score{3}\\
+SIEM/monitoring \score{1}, Grafana \score{3}\\[6pt]
 
+\textbf{Sécurité \& Cryptographie}\\
+Protocoles : TLS \score{3}, Kerberos \score{3}, PKI concepts \score{3}, gestion de clés \score{3}\\
+Cryptanalyses : DPA (side-channel) \score{3}, fault injection \score{3}, attaques statistiques sur ECDSA \score{4}, JavaCard security \score{2}\\
+Hardening \score{3}, audits de code \score{3}, pentest basics (Metasploit) \score{3}, reverse engineering (Ghidra/GDB) \score{4}\\[6pt]
+
+\textbf{Testing \& Fuzzing}\\
+fuzzing \score{3}, AFL++ \score{4}, coverage analysis \score{3}, sanitizers (ASAN, UBSAN\dots) \score{4}\\
+Outils : QEMU-based fuzzing \score{2}, emulation harness development \score{2}\\[6pt]
+
+\textbf{Langages \& Outils}\\
+Python \score{5}, Bash \score{4}, PowerShell \score{2}, C \score{4}, C++ \score{3}, Java \score{3}, Assembly (ARM / x86-64) \score{2}, Git \score{5}, LaTeX \score{3}, Doxygen (Documentation) \score{3}
+\end{multicols}
+
+% \vspace{6pt}
+\pagebreak
+
+\cvsection{Expériences professionelles}
+
+\cvevent{Mars 2025 -- Août 2025}{STMicroelectronics -- Stage de fin d'études}{Labège (Toulouse)}{Fuzzing du bootloader MCUboot et développement de grammars pour tests automatisés}{Sécurité système et logicielle des systèmes embarqués ARM. Mise en place de harness d'émulation (QEMU / Unicorn), intégration de campagnes de fuzzing automatisées, instrumentation pour coverage et rapports.}
+
+\cvevent{Mai 2024 -- maintenant}{Solving Company -- Mission / Consultant}{Bordeaux}{Conformité ANSSI et RGPD pour traitements de données de santé; recommandations techniques}{Mise en place de bonnes pratiques DevSecOps, pipelines CI, automatisation des déploiements, gestion de secrets et conformité.}
+
+\cvevent{Novembre 2023}{Crédit Agricole GIP -- Immersion SOC (N3)}{Gradignan (Bordeaux)}{Parsing d'IOCs, analyse du SIEM Splunk}{Approche opérationnelle SOC, triage d'incidents, supervision.}
+
+\cvevent{Mai 2021 -- Juil 2021}{Laboratoire XLIM UMR CNRS 7252 -- Stage}{Poitiers}{Conception de travaux pratiques (C++)}{Développement d'exercices avancés, tests automatisés, packaging et documentation.}
+
+\vspace{6pt}
+\cvsection{Projets et réalisations (extraits)}
+\begin{itemize}
+  \item \textbf{MCUboot fuzzing (STMicro)} : création de grammars, harness d'émulation, campagnes fuzz automatisées, analyse de coverage et des plantages.
+  \item \textbf{Custom mutator / AFL++ (travail universitaire / perso)} : définition de mutateurs structurés pour formats binaires, optimisation des queues, synchronisation multi-processus.
+  \item \textbf{Hardening et conformité} : application des directives techniques ANSSI, audits RGPD pour données sensibles.
+  \item \textbf{Reverse engineering} : usage de Ghidra et GDB pour l'analyse binaire, débogage et patching expérimental.
+  \item \textbf{Systèmes embarqués} : modules noyau Linux (expérimentaux), assemblage et tests sur cibles ARM, cross-compilation avec arm-none-eabi.
+\end{itemize}
+
+\vspace{6pt}
+
+% ---------- Sections additionnelles : parcours & projets ----------
+\cvsection{Projets académiques et associatifs}
+
+% Lycée
+\cvevent{Sept. 2015 -- Sept. 2017}{Radio \& couverture d'événements musicaux}{Lycée St Exupéry (La Rochelle)}{Organisation et couverture technique d'événements musicaux, prise en charge de la captation audio et gestion du flux de diffusion.}{\textbf{Compétences associées :} Communication orale \score{3}, Gestion de flux/streaming basique \score{2}, Anglais technique (maths) \score{2}}
+
+% Parcours renforcé L1-L2
+\cvevent{L1 et L2 (2018 -- 2020)}{Travaux en binôme et présentations techniques}{Université de Poitiers}{Exposés oraux réguliers sur sujets techniques en français; cours d'anglais d'ingénieur en anglais; projets en binômes avec livrables partagés.}{\textbf{Compétences associées :} Présentation technique \score{4}, Anglais technique \score{3}, Travail en binôme / Git \score{3}}
+
+% Licence 3
+\cvevent{Licence 3 (2020 -- 2021)}{Développement d'un jeu vidéo en équipe (C++)}{Université de Poitiers}{Développement d'un jeu en C++ avec moteur Godot; coordination avec lead dev et équipes artistiques pour intégrer sons et visuels; conception de bases de données relationnelles; utilisation d'un ORM pour un projet de plateforme en ligne (backend Symfony); étude d'injection SQL sur les requêtes; travail sur Scilab pour algorithmes d'analyse mathématique.}{\textbf{Compétences associées :} C++ \score{3}, Godot / intégration multimédia \score{2}, Conception BD relationnelle \score{3}, ORM / Symfony (backend) \score{2}, Sécurité appliquée aux requêtes (injection SQL) \score{3}, Scilab / algorithmique \score{3}}
+
+% Master 1 ROAD 
+\cvevent{M1 ROAD (Sept. 2021 -- Mai 2022)}{Flop!Edt}{Université de Bordeaux (remote)}{Étude d'algorithmes gloutons et problèmes d'optimisation (tournées, graphe, flots). Projet professionnalisant : Flop!Edt (C++) — intégration dans une équipe travaillant sur un outil de génération d'emplois du temps comme problème de maximisation avec relaxation lagrangienne.}{\textbf{Compétences associées :} Algorithmique (gloutons, graphes) \score{4}, C++ projet pro \score{3}, Recherche opérationnelle \score{3}, Modélisation de contraintes \score{3}}
+
+% Année de césure
+\cvevent{Césure (Sept. 2022 --- Mai 2023)}{Support associatif et déploiement d'outils}{Pessac (Bordeaux)}{Administration d'identifiants et mise en place de partage de documents sécurisé pour l'association Alt- : déploiement et formation à BitWarden, sélection d'outils libres et bonnes pratiques. Formation via SecNumAcadémie de l'ANSSI.}{\textbf{Compétences associées :} Gouvernance \& bonnes pratiques (NIS) \score{3}, Gestion de secrets (BitWarden) \score{4}, Formation / sensibilisation \score{4}, Conseil TPE/PME \score{3}}
+
+% Etu'Récup
+\cvevent{Etu'Récup}{Ateliers collaboratifs \& réparation électronique}{Pessac (Bordeaux)}{Ateliers de réparation électronique et informatique; diagnostics, remplacement de composants, remise en service, travail collaboratif}{\textbf{Compétences associées :} Réparation hardware \score{3}, Diagnostic système \score{3}, Autonomie projet / consulting \score{3}}
+
+% Solving Company
+\cvevent{Solving Company}{Conformité RGPD \& revue système}{Bordeaux}{Revue système et réseaux pour conformité RGPD; formation des collaborateurs sur réflexes cybersécurité basés sur fiches synthèses ANSSI; hébergement des données en Europe et stratégies de sauvegarde locales/distantes.}{\textbf{Compétences associées :} RGPD \score{4}, Revue sécurité système \& réseaux \score{4}, Politique de sauvegarde / hébergement EU \score{3}, Sensibilisation collaborateurs \score{4}}
+
+\pagebreak
+
+% M1 CSI : SAD DNS synthèse
+\cvsection{M1 CSI --- SAD DNS}
+\noindent étude de SAD DNS (Side-channel AttackeD DNS)
+% \begin{itemize}
+%   \item SAD DNS réactive une forme de \emph{DNS cache poisoning} en exploitant un canal auxiliaire (side-channel) lié au comportement du système d'exploitation (par ex. limitations de fréquence/ICMP) pour déduire le port source UDP et réduire l'entropie nécessaire à l'empoisonnement de cache.
+%   \item L'attaque combine inférence du port source et prédiction du TxID DNS pour injecter des réponses DNS falsifiées dans des résolveurs vulnérables.
+%   \item Mitigations usuelles : appliquer les mises à jour OS, activer DNS Cookies (RFC 7873), déployer DNSSEC (validation des signatures), et limiter l'exposition des résolveurs non sécurisés.
+% \end{itemize}
+\noindent\textbf{Compétences associées :} Sécurité DNS \score{3}, DNSSEC \score{2}, Hardening OS / correctifs \score{3}
+
+% M2 CSI : cryptanalyse & implémentations
+\cvsection{M2 CSI --- Travaux de cryptanalyse}
+\cvevent{Février 2025}{Cryptanalyse \& implémentations}{Université de Bordeaux}{Travail sur cryptanalyse active : attaque par faute sur AES (implémentation en Python) avec parallélisation des expériences; étude de cryptanalyse de signatures numériques; mise en place d'automatisations et tests unitaires. Étude historique d'attaques sur WEP/WPA (downgrade, faiblesses), et architecture d'authentification/systèmes sécurisés.}{\textbf{Compétences associées :} Cryptanalyse (AES, attaques par faute) \score{5}, Python (implémentation \& tests) \score{5}, Parallélisation \& scripting \score{4}, Analyse de protocoles sans-fil (WEP/WPA) \score{3}, Authentification \& PKI \score{3}}
+
+\cvsection{Projets récents}
+\cvevent{Septembre 2025}{Automatisation en Python pour le CREPT de Toulouse}{Toulouse}
+{Travail d'assistance pour des outils de parsing en Python, développement de tests pour correspondre aux données typiques du client et à des cas d'entrées exotiques ; création d'un logiciel ergonomique pour sélectionner des zones de pdf avec Pygame}
+{\textbf{Compétences associées :} Pédagogie par projet \score{5}, Scripting Python\score{4}, Pygames\score{3}, Conformité besoin client\score{4}}
+
+
+% \vspace{6pt}
+% \cvsection{Mots-clé (pour tri commercial / recherche de mission)}
+% \noindent\normalsize
+% DevSecOps, CI/CD, GitLab CI, Jenkins, GitOps, Ansible, Terraform, IaC, Docker, Kubernetes, Helm, ArgoCD, Dockerfile, Prometheus, Grafana, ELK, SIEM, fuzzing, MCUboot, AFL++, Unicorn, Unicorn-AFL, QEMU, instrumentation, sanitizers, ASAN, UBSAN, coverage, custom mutator, embedded security, ARM, arm-none-eabi, kernel modules, Linux (Debian/Ubuntu), SSH, firewalls, VLAN, NAT, IPSec, TLS, Kerberos, PKI, JavaCard, DPA, fault injection, ECDSA, AES, reverse engineering, Ghidra, GDB, Python, Bash, C, C++, Assembly, LaTeX, Doxygen, RGPD, ANSSI, conformité.
+
+\null
+\vspace*{\fill}
 \end{document}
