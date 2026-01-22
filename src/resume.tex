@@ -128,7 +128,7 @@
     {\bfseries\scshape\HUGE Paul} \\
     {\bfseries\scshape\HUGE Chauveau}
     \vspace{.2cm} \\
-    {\large Spécialiste cybersécurité}
+    {\large Ingénieur Linux embarqué}
     \vspace{.3cm} \\
     \rule{\linewidth}{0.4pt}
     \addcontentsline{toc}{section}{Informations personnelles}
@@ -147,14 +147,13 @@
     \addcontentsline{toc}{section}{Compétences techniques}
     \section*{\large Compétences techniques}
     \begin{tabularx}{\textwidth}{cY}
-      %\faSearch{}     &  Google advanced search, Tor, Wayback Machine \\
-      \faGreaterThan{}  & Python, Bash, Powershell \\ % scripting
-      \faCode{}         & C, C++, Java, Assembly ARM/x86-64 \\ % lower level coding
-      \faLinux{}        & GNU/Linux (Debian, Ubuntu) \\
-      \faWindows{}      & Windows OS, suite Microsoft 365 \\
-      \faBoxes{}        & QEMU, VirtualBox, Unicorn, Docker \\
-      \faCodeBranch{}   & Git, Visual Studio Code, SSH \\
-      \faPen{}          & \LaTeX, Markdown, HTML, Doxygen \\
+      \faMicrochip{} & Systèmes embarqués, bootloaders \\
+      \faLinux{} & GNU/Linux (Debian, Ubuntu) \\
+      \faCode{} & C, C++, Bash, Python, Assembly ARM/x86-64 \\
+      \faCogs{} & Cross-compilation, toolchains, build systems \\
+      \faBoxes{} & QEMU, Unicorn, Docker, VirtualBox \\
+      \faCodeBranch{} & Git, SSH, Visual Studio Code \\
+      \faPen{} & \LaTeX, Markdown, Doxygen \\
     \end{tabularx}
     \vspace{.3cm} \\
     \rule{\linewidth}{0.4pt}
@@ -184,7 +183,7 @@
       %\faHiking{}     & Rando \\
       \faLaptopCode{} & Codage \\
       \faFilm{}       & Cinéma \\
-      \faBookOpen{}   & Littérature \\
+      %\faBookOpen{}   & Littérature \\
     \end{tabularx}
     \vspace{.3cm} \\
   \end{minipage}
@@ -213,16 +212,16 @@
         \item Attaques par canaux auxiliaires and injection de fautes (pratiqué sur AES)
       \end{itemize}
     }
-    {\footnotesize Sécurité des réseaux : IPSec, Kerberos, TLS, MiTM, Metasploit} \\
-    {\footnotesize Attaques statistiques sur ECDSA : projet en trinôme} \\
+    {\footnotesize Sécurité des réseaux : IPSec, Kerberos, TLS, MiTM, Metasploit} \\[1ex]
+    %{\footnotesize Attaques statistiques sur ECDSA : projet en trinôme} \\
     %{\footnotesize Cryptanalyse : attaques implémentées en Python (Sage)} \\
-    {\footnotesize Séminaires en anglais : Intelligence Artificielle et enjeux} \\[1ex]
+    %{\footnotesize Séminaires en anglais : Intelligence Artificielle et enjeux} \\[1ex]
 
     {\large \textbf{Master 1 Cryptologie et Sécurité Informatique}} \\
     {\scshape\fontseries{light}\selectfont Université de Bordeaux \qquad septembre 2023 \textendash{} juin 2024} \\
     {\footnotesize Sécurité des logiciels : overflow, string bugs, corruption mémoire} \\
-    {\footnotesize Administration des réseaux : scans, VLAN, NAT, firewall} \\
-    {\footnotesize Étude en trinôme des empoisonnements de cache DNS (\href{https://www.saddns.net/}{SAD DNS})} \\
+    %{\footnotesize Administration des réseaux : scans, VLAN, NAT, firewall} \\
+    %{\footnotesize Étude en trinôme des empoisonnements de cache DNS (\href{https://www.saddns.net/}{SAD DNS})} \\
     {\footnotesize Systèmes d'exploitation (UNIX), anglais technique} \\
     {\footnotesize Parallélisme CPU et GPU en C : AVX, OpenMP \& OpenCL} \\[1ex]
 
@@ -258,8 +257,9 @@
     {\scshape\fontseries{light}\selectfont Labège (Toulouse) \qquad \qquad Mars 2025 \textendash{} Août 2025} \\
     \begin{itemize}
       \setlength{\itemsep}{-3pt}
-      \item Fuzzing du bootloader MCUboot, écriture de grammaires
-      \item Sécurité système et logicielle des systèmes embarqués ARM% et exploitation
+      \item Fuzzing du bootloader MCUboot sur cibles ARM (Unicorn)
+      \item Analyse et tests de la bootchain MCUboot
+      \item Sécurité logicielle bas niveau un système embarqué ARM
     \end{itemize}
 
     {\large \textbf{Credit Agricole GIP}} \\ 
@@ -285,6 +285,14 @@
     \phantomsection{}
     \addcontentsline{toc}{section}{Projets}
     \section*{\scshape\Large Projets \rule{\linewidth}{0.4pt}}
+
+    {\large \textbf{Autoformation}} \\
+    {\scshape\fontseries{light}\selectfont Toulouse \qquad septembre 2025 \textendash{} actuellement} \\
+    \begin{itemize}
+        \setlength{\itemsep}{-3pt}
+        \item Yocto Project : build d'images Linux embarquées
+        \item Automatisation : Github actions, Ansible
+    \end{itemize}
     
     {\large \textbf{Solving Company}} \\
     {\scshape\fontseries{light}\selectfont Bordeaux et alentours \qquad mai 2024 \textendash{} mars 2025} \\
